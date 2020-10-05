@@ -121,7 +121,7 @@ const SideNavigation = () => {
               <NavDivider title="Settings" />
               <NavItem
                 title="Gateway Settings"
-                link="/gatewaySettings"
+                link="/settings"
                 CustomIcon={FaCreditCard}
               />
               <NavItem
