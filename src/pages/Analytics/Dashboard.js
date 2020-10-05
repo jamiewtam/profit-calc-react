@@ -62,7 +62,6 @@ const Dashboard = () => {
           </div>
           <div className="row">
             <div className="offset-xl-10 col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
-              <form></form>
               <div className="form-group">
                 <input
                   className="form-control"

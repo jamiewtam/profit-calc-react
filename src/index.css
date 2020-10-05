@@ -5417,3 +5417,7 @@ form.dropzone {
   background-color: #b7b6b7;
   border-radius: 2px;
 }
+
+.react-icons {
+  vertical-align: middle;
+}
