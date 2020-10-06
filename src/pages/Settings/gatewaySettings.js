@@ -2,6 +2,9 @@ import React from "react";
 import { Link, Route, useRouteMatch } from "react-router-dom";
 import { FaPaperPlane } from "react-icons/fa";
 
+import PageContainer from "../../Layouts/Pages/PageContainer";
+import CardContainer from "../../Layouts/Pages/CardContainer";
+
 const GatewaySettings = (props) => {
   const { path, url } = useRouteMatch();
 
@@ -44,134 +47,96 @@ const GatewaySettings = (props) => {
     );
   };
 
-  const SettingsCard = ({ title, feeName, state }) => {
+  const SettingsCard = ({ feeName, state }) => {
     return (
-      <div class="card">
-        <div class="card-header">
-          <h3 class="mb-2">{title}</h3>
-        </div>
-        <div class="card-body">
-          <form>
-            <FormElement
-              id={`${feeName}-transaction-percentage`}
-              title="Percentage"
-              value={state.percentage}
-            />
-            <FormElement
-              id={`${feeName}-transaction-fee-fixed`}
-              title="Fixed Fee"
-              value={state.fixedFee}
-            />
-            <button
-              class="btn-outline-success btn-lg"
-              id="submit-gateway-settings"
-              style={{ marginTop: "20px" }}
-            >
-              <FaPaperPlane /> Update Gateway Fees
-            </button>
-          </form>
-        </div>
-      </div>
+      <form>
+        <FormElement
+          id={`${feeName}-transaction-percentage`}
+          title="Percentage"
+          value={state.percentage}
+        />
+        <FormElement
+          id={`${feeName}-transaction-fee-fixed`}
+          title="Fixed Fee"
+          value={state.fixedFee}
+        />
+        <button
+          class="btn-outline-success btn-lg"
+          id="submit-gateway-settings"
+          style={{ marginTop: "20px" }}
+        >
+          <FaPaperPlane /> Update Gateway Fees
+        </button>
+      </form>
     );
   };
 
   const ExternalGateway = ({ state }) => {
     return (
-      <div class="card">
-        <div class="card-header">
-          <h3 class="mb-2">External Payment Gateway Fee</h3>
-        </div>
-        <div class="card-body">
-          <form>
-            <FormElement
-              id={`externalGatewayFee-transaction-percentage`}
-              title="Percentage"
-              value={state.percentage}
-            />
-            <button
-              class="btn-outline-success btn-lg"
-              id="submit-gateway-settings"
-              style={{ marginTop: "20px" }}
-            >
-              <FaPaperPlane /> Update Gateway Fees
-            </button>
-          </form>
-        </div>
-      </div>
+      <form>
+        <FormElement
+          id={`externalGatewayFee-transaction-percentage`}
+          title="Percentage"
+          value={state.percentage}
+        />
+        <button
+          class="btn-outline-success btn-lg"
+          id="submit-gateway-settings"
+          style={{ marginTop: "20px" }}
+        >
+          <FaPaperPlane /> Update Gateway Fees
+        </button>
+      </form>
     );
   };
 
   return (
-    <div class="dashboard-wrapper">
-      <div class="dashboard-finance"></div>
-      <div class="container-fluid dashboard-content">
-        <div class="row"></div>
-        <div
-          class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
-          id="update-gateway-settings"
-        >
-          <div className="page-header" style={{ marginBottom: "20px" }}>
-            <h2 className="page-title mb-2">Gateway Settings</h2>
+    <PageContainer pageTitle="Gateway Settings">
+      <div id="update-gateway-settings"></div>
+      <CardContainer title="Shopify Fees">
+        <SettingsCard feeName="shopify" state={shopifyFees} />
+      </CardContainer>
+      <CardContainer title="Paypal Fees">
+        <SettingsCard feeName="paypal" state={paypalFees} />
+      </CardContainer>
+      <CardContainer title="Stripe Fees">
+        <SettingsCard feeName="stripe" state={stripeFees} />
+      </CardContainer>
+      <CardContainer title="External Gateway Fees">
+        <ExternalGateway state={externalGatewayFee} />
+      </CardContainer>
+      <CardContainer title="Other Gateway Settings">
+        <form>
+          <FormElement
+            id="cash-on-delivery-fee-selector"
+            title="Cash on Delivery (COD) - Per Order Fee"
+            value={CODPercentage.percentage}
+          />
+          <br />
+          <div class="div">
+            <span>Shopify Payments - iDeal Gateway:</span> If you accept
+            payments through iDeal with Shopify Payments in the Netherlands.
+            Select "True". This will account for the flat rate 0.29 cents per
+            transaction for payments received through iDeal with Shopify
+            Payments.
           </div>
-          <SettingsCard
-            title="Shopify Gateway Fees"
-            feeName="shopify"
-            state={shopifyFees}
-          />
-
-          <SettingsCard
-            title="Paypal Gateway Fees"
-            feeName="paypal"
-            state={paypalFees}
-          />
-
-          <SettingsCard
-            title="Stripe Gateway Fees"
-            feeName="stripe"
-            state={stripeFees}
-          />
-
-          <ExternalGateway state={externalGatewayFee} />
-
-          <div class="card">
-            <div class="card-header">
-              <h3 class="mb-0">Other Gateway Settings</h3>
-            </div>
-            <div class="card-body">
-              <form>
-                <FormElement
-                  id="cash-on-delivery-fee-selector"
-                  title="Cash on Delivery (COD) - Per Order Fee"
-                  value={CODPercentage.percentage}
-                />
-                <br />
-                <div class="div">
-                  <span>Shopify Payments - iDeal Gateway:</span> If you accept
-                  payments through iDeal with Shopify Payments in the
-                  Netherlands. Select "True". This will account for the flat
-                  rate 0.29 cents per transaction for payments received through
-                  iDeal with Shopify Payments.
-                </div>
-                <select class="custom-select" id="nl-gateway-selector">
-                  <option value="true">True</option>
-                  <option value="false" selected>
-                    False
-                  </option>
-                </select>
-                <br />
-                <br />
-                <button
-                  class="btn-outline-success btn-lg"
-                  id="submit-gateway-settings"
-                >
-                  <i class="fa fa-paper-plane"></i> Update Other Settings
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          <select class="custom-select" id="nl-gateway-selector">
+            <option value="true">True</option>
+            <option value="false" selected>
+              False
+            </option>
+          </select>
+          <br />
+          <br />
+          <button
+            class="btn-outline-success btn-lg"
+            id="submit-gateway-settings"
+          >
+            <i class="fa fa-paper-plane"></i> Update Other Settings
+          </button>
+        </form>
+      </CardContainer>
+    </PageContainer>
   );
 };
 

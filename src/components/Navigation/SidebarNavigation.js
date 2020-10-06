@@ -126,7 +126,7 @@ const SideNavigation = () => {
               />
               <NavItem
                 title="General Settings"
-                link="/settings"
+                link="/generalSettings"
                 CustomIcon={FaWrench}
               />
               <NavItem

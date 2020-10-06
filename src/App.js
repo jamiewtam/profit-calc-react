@@ -7,6 +7,7 @@ import Header from "./components/Navigation/Header";
 import Dashboard from "./pages/Analytics/Dashboard";
 
 import GatewaySettings from "./pages/Settings/gatewaySettings";
+import GeneralSettings from "./pages/Settings/generalSettings/generalSettings";
 
 const Routing = () => {
   return (
@@ -34,6 +35,9 @@ const Routing = () => {
       {/* Settings */}
       <Route path="/settings">
         <GatewaySettings />
+      </Route>
+      <Route path="/generalSettings">
+        <GeneralSettings />
       </Route>
       <Route path="/vatSettings"></Route>
       <Route path="/dashboardSettings"></Route>
