@@ -38,6 +38,7 @@ const Dashboard = () => {
           amount={cardElement.amount}
           arrowDirection={cardElement.arrowDirection}
           hoverText={cardElement.hoverText}
+          key={cardElement.title}
         />
       );
     });

@@ -5,18 +5,18 @@ import SideNavigation from "./SidebarNavigation";
 
 const Header = (props) => {
   return (
-    <div className="dashboard-main-wrapper">
+    <React.Fragment>
       <div className="dashboard-header">
         <nav className="navbar navbar-expand-lg bg-white fixed-top">
           <a className="navbar-brand">
             <img className="logo" src={Logo} alt="profit-calc-logo" />
           </a>
-          <IconContext.Provider value={{ style: { verticalAlign: "middle" } }}>
-            <SideNavigation />
-          </IconContext.Provider>
         </nav>
       </div>
-    </div>
+      <IconContext.Provider value={{ style: { verticalAlign: "middle" } }}>
+        <SideNavigation />
+      </IconContext.Provider>
+    </React.Fragment>
   );
 };
 

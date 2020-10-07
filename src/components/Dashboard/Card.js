@@ -4,20 +4,20 @@ const Card = (props) => {
   const { title, currency, amount, arrowDirection, hoverText } = props;
 
   return (
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
-      <div class="card card-dashboard" id="revenue-card">
-        <h5 class="card-header">{title}</h5>
-        <div class="card-body">
-          <div class="metric-value d-inline-block">
-            <h1 class="mb-1"> {currency} &nbsp; </h1>
-            <h1 class="mb-1" id="store-revenue">
+    <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
+      <div className="card card-dashboard" id="revenue-card">
+        <h5 className="card-header">{title}</h5>
+        <div className="card-body">
+          <div className="metric-value d-inline-block">
+            <h1 className="mb-1"> {currency} &nbsp; </h1>
+            <h1 className="mb-1" id="store-revenue">
               {amount}
             </h1>
           </div>
-          <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+          <div className="metric-label d-inline-block float-right text-success font-weight-bold">
             <i className={`fa fa-fw fa-arrow-${arrowDirection}`}></i>
           </div>
-          <div class="card-hover-text" id="revenue-hover-text">
+          <div className="card-hover-text" id="revenue-hover-text">
             {hoverText}
           </div>
         </div>

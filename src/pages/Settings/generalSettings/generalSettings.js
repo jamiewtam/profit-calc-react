@@ -1,7 +1,8 @@
 import React from "react";
 
-import { NavLink, Route, useRouteMatch } from "react-router-dom";
+import { Route, useRouteMatch } from "react-router-dom";
 
+import SubNavMenu from "../../../components/Navigation/SubNavMenu";
 import PageContainer from "../../../Layouts/Pages/PageContainer";
 
 import {
@@ -9,24 +10,7 @@ import {
   GeneralSettingsAliexpress,
   GeneralSettingsCJDropshipping,
   GeneralSettingsOther,
-} from "./generalSettingCards";
-
-const NavUlMenuStyle = {
-  listStyleType: "none",
-  margin: "0",
-  padding: "0",
-  overflow: "hidden",
-  textAlign: "center",
-};
-
-const NavLiMenuStyle = {
-  display: "inline-block",
-  color: "white",
-  textAlign: "center",
-  fontSize: "18px",
-  padding: "16px",
-  textDecoration: "none",
-};
+} from "./GeneralSettingCards";
 
 const routes = [
   { to: "", title: "General" },
@@ -35,32 +19,15 @@ const routes = [
   { to: "/other", title: "Other" },
 ];
 
-const NavMenu = ({ routes, url }) => {
-  return routes.map((route) => {
-    return (
-      <li style={NavLiMenuStyle}>
-        <NavLink
-          exact
-          activeStyle={{ textDecoration: "underline" }}
-          key={route.to}
-          to={`${url}${route.to}`}
-        >
-          {route.title}
-        </NavLink>
-      </li>
-    );
-  });
-};
-
 const GeneralSettings = (props) => {
   const { url } = useRouteMatch();
 
   return (
     <PageContainer pageTitle="General Settings">
       <div id="update-general-settings"></div>
-      <ul style={NavUlMenuStyle}>
-        <NavMenu routes={routes} url={url} />
-      </ul>
+
+      <SubNavMenu routes={routes} url={url} />
+
       <Route exact path="/generalSettings">
         <GeneralSettingsGeneral />
       </Route>

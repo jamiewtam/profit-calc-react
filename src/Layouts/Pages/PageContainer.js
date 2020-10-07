@@ -4,17 +4,17 @@ import Footer from "../../components/Navigation/Footer";
 
 const PageContainer = (props) => {
   return (
-    <div class="dashboard-wrapper">
-      <div class="dashboard-finance">
-        <div class="container-fluid dashboard-content">
-          <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"></div>
-            <div class="page-header">
-              <h1 class="mb-2 page-title">{props.pageTitle}</h1>
+    <div className="dashboard-wrapper">
+      <div className="dashboard-finance">
+        <div className="container-fluid dashboard-content">
+          <div className="row">
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"></div>
+            <div className="page-header">
+              <h1 className="mb-2 page-title">{props.pageTitle}</h1>
             </div>
           </div>
-          <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div className="row">
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
               {props.children}
             </div>
           </div>

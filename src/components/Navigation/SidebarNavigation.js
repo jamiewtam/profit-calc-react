@@ -85,12 +85,12 @@ const SideNavigation = () => {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/aliexpressSetup">
+                      <a className="nav-link" href="/aliexpressCOGS">
                         2) Aliexpress COGS
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/cjshippingsetup">
+                      <a className="nav-link" href="/cjshippingCOGS">
                         3) CJ Dropshipping
                       </a>
                     </li>
@@ -105,12 +105,12 @@ const SideNavigation = () => {
 
               <NavItem
                 title="Monthly Expenses"
-                link="/new-expense"
+                link="/monthlyExpenses"
                 CustomIcon={FaCalendar}
               />
               <NavItem
-                title="Ad Platforms"
-                link="/adlogins"
+                title="Ad Accounts"
+                link="/adAccountLogins"
                 CustomIcon={FaUserCircle}
               />
               <NavItem
@@ -135,7 +135,7 @@ const SideNavigation = () => {
                 CustomIcon={FaBook}
               />
               <NavItem
-                title="Dashboard Settings"
+                title="Dashboard Custom."
                 link="/dashboardSettings"
                 CustomIcon={FaArrowsAlt}
               />
