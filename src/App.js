@@ -10,7 +10,9 @@ import Dashboard from "./pages/Analytics/Dashboard";
 
 import MonthlyExpenses from "./pages/Expenses/MonthlyExpenses";
 import AdAccountLogins from "./pages/Expenses/AdAccountLogins/AdAccountLogins";
-import Aliexpress from "./pages/Expenses/COGS/Aliexpress";
+import AliexpressCOGS from "./pages/Expenses/COGS/Aliexpress";
+import COGSByDate from "./pages/Expenses/COGS/COGSByDate";
+import CJDropshipping from "./pages/Expenses/COGS/CJDropshipping";
 
 // Settings Pages
 import GatewaySettings from "./pages/Settings/GatewaySettings";
@@ -22,7 +24,6 @@ import DashboardCustomization from "./pages/Settings/DashboardCustomization";
 import PrivacyPolicy from "./pages/Footer/PrivacyPolicy";
 import TermsAndConditions from "./pages/Footer/TermsAndConditions";
 import AboutUs from "./pages/Footer/About";
-import AliexpressCOGS from "./pages/Expenses/COGS/Aliexpress";
 
 const Routing = () => {
   return (
@@ -44,8 +45,12 @@ const Routing = () => {
       <Route path="/aliexpressCogs">
         <AliexpressCOGS />
       </Route>
-      <Route path="/cjDropshippingCogs"></Route>
-      <Route path="/cogsByDate"></Route>
+      <Route path="/cjDropshippingCogs">
+        <CJDropshipping />
+      </Route>
+      <Route path="/cogsByDate">
+        <COGSByDate />
+      </Route>
       <Route path="/monthlyExpenses">
         <MonthlyExpenses />
       </Route>

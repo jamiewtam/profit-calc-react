@@ -90,7 +90,7 @@ const SideNavigation = () => {
                       </a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/cjshippingCOGS">
+                      <a className="nav-link" href="/cjDropshippingCOGS">
                         3) CJ Dropshipping
                       </a>
                     </li>
