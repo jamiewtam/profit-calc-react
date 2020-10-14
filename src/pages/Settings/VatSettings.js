@@ -10,12 +10,12 @@ const VATSettings = (props) => {
     <PageContainer pageTitle="VAT (Value Added Tax) Settings">
       <div id="update-vat-settings"></div>
       <CardContainer title="Revenue VAT">
-        <div class="div">
+        <div className="div">
           <span>VAT Setting:</span> If You Have VAT Included in Your Shopify
           Item Prices, Select True. This Will Deduct Your VAT From Your Revenue
           and Place It In the Taxes Collection/VAT Card.
         </div>
-        <select class="custom-select" id="vat-selector">
+        <select className="custom-select" id="vat-selector">
           <option value="true" selected="selected">
             True
           </option>
@@ -27,7 +27,7 @@ const VATSettings = (props) => {
           VAT Automatically Caculated for Shipping Charged Setting: If VAT is
           Automatically Calculated on Shipping Charged By Shopify. Select True
         </span>
-        <select class="custom-select" id="vat-auto-shipping">
+        <select className="custom-select" id="vat-auto-shipping">
           <option value="true" selected="selected">
             True
           </option>
@@ -40,13 +40,13 @@ const VATSettings = (props) => {
         Enter In Your VAT Percentage Here. (The Above VAT Setting Must Be Set to
         True for the Manual VAT Percentage to Work)
         <input
-          class="form-control"
+          className="form-control"
           type="text"
           value=""
           id="VAT-manual-percentage"
         />
         <br />
-        <button class="btn-outline-success btn-lg" id="submit-vat-settings">
+        <button className="btn-outline-success btn-lg" id="submit-vat-settings">
           <FaPaperPlane /> Update Revenue VAT Settings
         </button>
       </CardContainer>
@@ -54,7 +54,7 @@ const VATSettings = (props) => {
         <span>Cost of Goods Sold VAT Setting:</span> If VAT is paid on the
         Aliexpress Cost of Goods Sold. (VAT is Included in the Order Price)
         Select True. This Setting Will Decrease COGS and Decrease VAT.
-        <select class="custom-select" id="cogs-vat-selector">
+        <select className="custom-select" id="cogs-vat-selector">
           <option value="true" selected="selected">
             True
           </option>
@@ -65,14 +65,14 @@ const VATSettings = (props) => {
         <span>Cost of Goods Sold VAT Percentage:</span> Enter in the VAT
         Percentage Paid on Cost of Goods Sold.
         <input
-          class="form-control"
+          className="form-control"
           type="text"
           value=""
           id="cogs-vat-manual-percentage"
         />
         <br />
         <br />
-        <button class="btn-outline-success btn-lg" id="submit-vat-settings">
+        <button className="btn-outline-success btn-lg" id="submit-vat-settings">
           <FaPaperPlane /> Update Cost of Goods Sold VAT Settings
         </button>
       </CardContainer>
@@ -80,7 +80,7 @@ const VATSettings = (props) => {
         <span>Ad Spend VAT Setting:</span> Select True if VAT is Paid on Ad
         Spend (Facebook, Google, and Bing ads). This Will Increase Your Ad
         Costs.
-        <select class="custom-select" id="facebook-vat-selector">
+        <select className="custom-select" id="facebook-vat-selector">
           <option value="true" selected="selected">
             True
           </option>
@@ -91,13 +91,13 @@ const VATSettings = (props) => {
         <span>Ad spend VAT Percentage:</span> Enter in the VAT Percentage Paid
         on Ad spend.
         <input
-          class="form-control"
+          className="form-control"
           type="text"
           value=""
           id="facebook-vat-manual-percentage"
         />
         <br />
-        <button class="btn-outline-success btn-lg" id="submit-vat-settings">
+        <button className="btn-outline-success btn-lg" id="submit-vat-settings">
           <FaPaperPlane /> Update Ad Spend VAT Settings
         </button>
       </CardContainer>

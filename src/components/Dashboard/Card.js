@@ -1,7 +1,28 @@
 import React from "react";
 
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+
 const Card = (props) => {
   const { title, currency, amount, arrowDirection, hoverText } = props;
+  console.log(arrowDirection);
+
+  const ArrowIcon = ({ direction }) => {
+    if (arrowDirection === "up") {
+      return (
+        <div className="text-success">
+          <FaArrowUp />
+        </div>
+      );
+    } else if (arrowDirection === "down") {
+      return (
+        <div className="text-danger">
+          <FaArrowDown />
+        </div>
+      );
+    } else {
+      return <div></div>;
+    }
+  };
 
   return (
     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
@@ -14,8 +35,8 @@ const Card = (props) => {
               {amount}
             </h1>
           </div>
-          <div className="metric-label d-inline-block float-right text-success font-weight-bold">
-            <i className={`fa fa-fw fa-arrow-${arrowDirection}`}></i>
+          <div className="metric-label d-inline-block float-right font-weight-bold">
+            <ArrowIcon direction={arrowDirection} />
           </div>
           <div className="card-hover-text" id="revenue-hover-text">
             {hoverText}

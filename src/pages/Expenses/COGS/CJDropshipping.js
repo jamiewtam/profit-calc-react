@@ -9,14 +9,14 @@ const CJDropshipping = (props) => {
   return (
     <PageContainer pageTitle="CJ Dropshipping">
       <CardContainer title="Include CJ Dropshipping COGS in Dashboard?">
-        <div class="custom-control custom-switch">
+        <div className="custom-control custom-switch">
           <input
-            class="custom-control-input"
+            className="custom-control-input"
             id="CJShippingSettingSwitch"
             type="checkbox"
             checked="checked"
           />
-          <label class="custom-control-label" for="CJShippingSettingSwitch">
+          <label className="custom-control-label" for="CJShippingSettingSwitch">
             Toggle To Include CJ Dropshipping
           </label>
         </div>
@@ -24,14 +24,14 @@ const CJDropshipping = (props) => {
       <CardContainer title="CJ Dropshipping API Key">
         <div id="CJ-shipping-access-token-card"></div>
         <input
-          class="form-control"
+          className="form-control"
           type="text"
           placeholder="Enter In a New Value to Replace Your Existing API Key"
           id="CJ-shipping-selector"
         />
         <br />
         <button
-          class="btn-outline-light btn-lg"
+          className="btn-outline-light btn-lg"
           id="submit-CJ-shipping-access-token"
         >
           <FaPaperPlane />

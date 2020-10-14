@@ -37,7 +37,7 @@ const GatewaySettings = (props) => {
         <label htmlFor="numberInput">{title}</label>
         <input
           name="numberInput"
-          class="form-control"
+          className="form-control"
           type="text"
           value={value}
           id={id}
@@ -61,7 +61,7 @@ const GatewaySettings = (props) => {
           value={state.fixedFee}
         />
         <button
-          class="btn-outline-success btn-lg"
+          className="btn-outline-success btn-lg"
           id="submit-gateway-settings"
           style={{ marginTop: "20px" }}
         >
@@ -80,7 +80,7 @@ const GatewaySettings = (props) => {
           value={state.percentage}
         />
         <button
-          class="btn-outline-success btn-lg"
+          className="btn-outline-success btn-lg"
           id="submit-gateway-settings"
           style={{ marginTop: "20px" }}
         >
@@ -113,14 +113,14 @@ const GatewaySettings = (props) => {
             value={CODPercentage.percentage}
           />
           <br />
-          <div class="div">
+          <div className="div">
             <span>Shopify Payments - iDeal Gateway:</span> If you accept
             payments through iDeal with Shopify Payments in the Netherlands.
             Select "True". This will account for the flat rate 0.29 cents per
             transaction for payments received through iDeal with Shopify
             Payments.
           </div>
-          <select class="custom-select" id="nl-gateway-selector">
+          <select className="custom-select" id="nl-gateway-selector">
             <option value="true">True</option>
             <option value="false" selected>
               False
@@ -129,10 +129,10 @@ const GatewaySettings = (props) => {
           <br />
           <br />
           <button
-            class="btn-outline-success btn-lg"
+            className="btn-outline-success btn-lg"
             id="submit-gateway-settings"
           >
-            <i class="fa fa-paper-plane"></i> Update Other Settings
+            <i className="fa fa-paper-plane"></i> Update Other Settings
           </button>
         </form>
       </CardContainer>

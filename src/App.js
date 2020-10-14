@@ -1,10 +1,15 @@
 import React from "react";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { IconContext } from "react-icons";
 
 import Header from "./components/Navigation/Header";
+
+import Loading from "./components/General/Loading";
 // PAGES --------------------------------------------------------
 import Dashboard from "./pages/Analytics/Dashboard";
+
+import { userContext, useGetUser } from "./util/Context/userContext";
 
 // Expense pages
 
@@ -87,11 +92,21 @@ const Routing = () => {
 };
 
 function App() {
+  const [user, loading] = useGetUser();
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="dashboard-main-wrapper">
       <Router>
-        <Header />
-        <Routing />
+        <userContext.Provider value={user}>
+          <IconContext.Provider value={{ style: { verticalAlign: "middle" } }}>
+            <Header />
+            <Routing />
+          </IconContext.Provider>
+        </userContext.Provider>
       </Router>
     </div>
   );

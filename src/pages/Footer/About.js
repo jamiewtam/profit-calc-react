@@ -7,8 +7,9 @@ const AboutUs = () => {
   return (
     <PageContainer pageTitle="About Us">
       <CardContainer>
-        <div class="video">
+        <div className="video">
           <iframe
+            title="about-us-video"
             width="460"
             height="280"
             src="https://www.youtube.com/embed/hLP6BDtNKOU"

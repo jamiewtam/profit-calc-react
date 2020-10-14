@@ -14,14 +14,17 @@ export const GeneralSettingsGeneral = () => {
           </label>
           <select
             name="currencySelector"
-            class="custom-select"
+            className="custom-select"
             id="currency-symbol"
           >
             <option value="$">$</option>
           </select>
           <br />
           <br />
-          <button class="btn-outline-success btn-lg" id="submit-other-settings">
+          <button
+            className="btn-outline-success btn-lg"
+            id="submit-other-settings"
+          >
             <FaPaperPlane /> Update Dashboard Currency
           </button>
         </form>
@@ -36,19 +39,22 @@ export const GeneralSettingsGeneral = () => {
         <label htmlFor="shopify-store-currency">Shopify Store Currency</label>
         <select
           name="shopify-store-currency"
-          class="custom-select"
+          className="custom-select"
           id="ad-account-base-currency"
         ></select>
         <br />
         <label htmlFor="ad-account-currency">Ad Account Currency</label>
         <select
           name="ad-account-currency"
-          class="custom-select"
+          className="custom-select"
           id="ad-account-currency"
         ></select>
         <br />
         <br />
-        <button class="btn-outline-success btn-lg" id="submit-other-settings">
+        <button
+          className="btn-outline-success btn-lg"
+          id="submit-other-settings"
+        >
           <FaPaperPlane /> Update Ad Account Currency
         </button>
       </CardContainer>
@@ -64,7 +70,7 @@ export const GeneralSettingsOther = () => {
         This Expense is Applied to Every Order. Setting Only Works If Manual
         COGS are Turned On.
         <input
-          class="form-control"
+          className="form-control"
           type="text"
           value="$"
           id="custom-order-selector"
@@ -74,29 +80,37 @@ export const GeneralSettingsOther = () => {
         Cost is Added to Every "Cost Per Item" Synced From Shopify. For Manual
         COGS Only.
         <input
-          class="form-control"
+          className="form-control"
           type="text"
           value=""
           id="cost-per-item-extra-cost"
         />
         <br />
-        <button class="btn-outline-success btn-lg" id="submit-other-settings">
+        <button
+          className="btn-outline-success btn-lg"
+          id="submit-other-settings"
+        >
           <FaPaperPlane /> Update Additional Expenses
         </button>
       </CardContainer>
       <CardContainer title="Other Settings">
         <span>Time-zone: </span> Dashboard Will Display Financial Metrics Based
         On This Time Zone.
-        <select class="custom-select" id="time-zone"></select>
+        <select className="custom-select" id="time-zone"></select>
         <br />
         <span>Shopify Loan Percentage: </span> For Percentage of Sales Loans
         Granted By Shopify
-        <input class="form-control" type="text" value="" id="shopify-loan" />
+        <input
+          className="form-control"
+          type="text"
+          value=""
+          id="shopify-loan"
+        />
         <br />
         <span>Filter Dashboard by Payment Status of Paid: </span> Dashboard only
         shows orders which are paid. For Shopify stores which use cash of
         delivery.
-        <select class="custom-select" id="filter-by-paid-selector">
+        <select className="custom-select" id="filter-by-paid-selector">
           <option value="true" selected="selected">
             True
           </option>
@@ -106,7 +120,7 @@ export const GeneralSettingsOther = () => {
         <span>Orders Are Frequently Edited: </span>If You Frequently Edit Orders
         e.g. Removing Items to Existing Orders Rather Than Refunding Them.
         Select True
-        <select class="custom-select" id="edit-orders-frequently-selector">
+        <select className="custom-select" id="edit-orders-frequently-selector">
           <option value="true" selected="selected">
             True
           </option>
@@ -114,8 +128,11 @@ export const GeneralSettingsOther = () => {
         </select>
         <br />
         <br />
-        <button class="btn-outline-success btn-lg" id="submit-other-settings">
-          <i class="fa fa-paper-plane"></i> Update Other Settings
+        <button
+          className="btn-outline-success btn-lg"
+          id="submit-other-settings"
+        >
+          <i className="fa fa-paper-plane"></i> Update Other Settings
         </button>
       </CardContainer>
     </React.Fragment>
@@ -126,21 +143,24 @@ export const GeneralSettingsAliexpress = () => {
   return (
     <React.Fragment>
       <CardContainer title="Aliexpress Settings">
-        <div class="div">
+        <div className="div">
           The Below Settings Are To Convert Your Aliexpress COGS Into the
           Currency of Your Shopify Store Using the Latest Exchange Rates.
           <br />
           <br />
           <span>Shopify Store Currency</span>
         </div>
-        <select class="custom-select" id="aliexpress-base-currency"></select>
+        <select
+          className="custom-select"
+          id="aliexpress-base-currency"
+        ></select>
         <br />
         <span>Aliexpress Currency</span>
-        <select class="custom-select" id="aliexpress-currency"></select>
+        <select className="custom-select" id="aliexpress-currency"></select>
         <hr />
         <span> Cashback Percentage: </span> For Aliexpress Cashback Programs
         <input
-          class="form-control"
+          className="form-control"
           type="text"
           value=""
           id="cashback-selector"
@@ -149,7 +169,7 @@ export const GeneralSettingsAliexpress = () => {
         <span>Decimal Place Selector:</span> If Your Currency Displays Values
         Using Periods Instead of Commas. Select True. E.g. 10.000 is Read as Ten
         Thousand Dollars Rather than Ten Dollars.
-        <select class="custom-select" id="aliexpress-comma-selector">
+        <select className="custom-select" id="aliexpress-comma-selector">
           <option value="true" selected="selected">
             True
           </option>
@@ -157,7 +177,10 @@ export const GeneralSettingsAliexpress = () => {
         </select>
         <br />
         <br />
-        <button class="btn-outline-success btn-lg" id="submit-other-settings">
+        <button
+          className="btn-outline-success btn-lg"
+          id="submit-other-settings"
+        >
           <FaPaperPlane /> Update Aliexpress Settings
         </button>
       </CardContainer>
@@ -174,16 +197,19 @@ export const GeneralSettingsCJDropshipping = () => {
         <br />
         <br />
         <span>Shopify Store Currency</span>
-        <select class="custom-select" id="CJ-base-currency"></select>
+        <select className="custom-select" id="CJ-base-currency"></select>
         <br />
         <span>
           CJ Dropshipping Currency (The Currency Used to Purchase Goods)
         </span>
-        <select class="custom-select" id="CJ-currency"></select>
+        <select className="custom-select" id="CJ-currency"></select>
         <br />
         <br />
-        <button class="btn-outline-success btn-lg" id="submit-other-settings">
-          <i class="fa fa-paper-plane"></i> Update CJ Dropshipping Settings
+        <button
+          className="btn-outline-success btn-lg"
+          id="submit-other-settings"
+        >
+          <i className="fa fa-paper-plane"></i> Update CJ Dropshipping Settings
         </button>
       </CardContainer>
     </React.Fragment>
