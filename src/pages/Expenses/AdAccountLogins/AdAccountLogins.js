@@ -8,7 +8,7 @@ import { FacebookAds, GoogleAds, BingAds } from "./AdAccountLoginComponents";
 const routes = [
   { to: "", title: "Facebook Ads" },
   { to: "/Google", title: "Google Ads" },
-  { to: "/Bing", title: "Bing Ads Ads" },
+  { to: "/Bing", title: "Bing Ads" },
 ];
 
 const AdLogins = () => {

@@ -3,6 +3,9 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { IconContext } from "react-icons";
 
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css"; // theme css file
+
 import Header from "./components/Navigation/Header";
 
 import Loading from "./components/General/Loading";

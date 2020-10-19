@@ -1,16 +1,27 @@
 import React from "react";
 import moment from "moment";
-import Card from "../../components/Dashboard/Card";
+
+import CSVDownload from '../../components/Dashboard/CSVDownload';
 import PageContainer from "../../Layouts/Pages/PageContainer";
 import { userContext } from "../../util/Context/userContext";
 import calculateDashboardValues from "../../api/dashboard/index";
 import Loading from "../../components/General/Loading";
+
+import {
+  CalendarComponent,
+  ShowCalendarBackdrop,
+  CalenderInput
+} from "../../components/Analytics/Calendar/Calendar";
+import { DashboardCards } from "../../components/Dashboard/Cards";
+import MonthlyExpenseTable from '../../components/Dashboard/MonthlyExpenseTable';
+import { useShowCalendar } from "../../util/hooks/useShowCalendar";
 
 const dashboardReducer = (state, action) => {
   switch (action.type) {
     case "UPDATE":
       return {
         ...state,
+        ...action.data,
         loading: false,
       };
     case "SEND_REQUEST":
@@ -47,165 +58,73 @@ const Dashboard = () => {
     avgCOGSTotal: 0,
     loading: true,
   });
-  const [startDate, setStartDate] = React.useState(
-    moment().subtract(6, "days").startOf("day")
-  );
-  const [endDate, setEndDate] = React.useState(moment());
+
+  const [startDate, setStartDate] = React.useState({
+    startDate: new Date(),
+    dateCounter: 0,
+  });
+  const [endDate, setEndDate] = React.useState({
+    endDate: new Date(),
+  });
+
+  const [showCalendar, handleCalendar] = useShowCalendar()
+
   const { storeName } = React.useContext(userContext);
-
-  console.log(state);
-
-  // const startDate = moment().subtract(6, "days").startOf("day");
-  // const endDate = moment()
 
   React.useEffect(() => {
     dispatch({ type: "SEND_REQUEST" });
-    calculateDashboardValues(startDate, endDate, storeName).then((data) => {
-      dispatch({
-        type: "UPDATE",
-        data,
-      });
-    });
-  }, [startDate, endDate, storeName]);
 
-  const cardArray = (state) => {
-    console.log(state);
-    return [
-      {
-        title: "Revenue",
-        amount: `${state.netRevenue}`,
-        arrowDirection: "up",
-        hoverText: "Total Revenue - Discount - Refunds",
-      },
-      {
-        title: "COGS",
-        amount: `${state.netCOGS}`,
-        arrowDirection: "down",
-        hoverText: "Aliexpress + Manual COGS + CJ + COGS By Date (If Toggled)",
-      },
-      {
-        title: "Custom Order Expense",
-        amount: `${state.totalCustomerOrderExp}`,
-        arrowDirection: "down",
-        hoverText: "Shipping Cost By Country + Custom Order Exp.",
-      },
-      {
-        title: "Gross Margin",
-        amount: `${state.grossMargin}`,
-        arrowDirection: "none",
-        hoverText: "Revenue - COGS - Custom Order Exp.",
-      },
-      {
-        title: "Number of Orders",
-        amount: `${state.orderCount}`,
-        arrowDirection: "none",
-        hoverText: "Informational Card",
-      },
-      {
-        title: "Taxes Collected",
-        amount: `${state.netTaxes}`,
-        arrowDirection: "none",
-        hoverText: "Informational Card - Already Deducted Under Total Revenue",
-      },
-      {
-        title: "Shipping Charged",
-        amount: `${state.totalNetShipping}`,
-        arrowDirection: "none",
-        hoverText: "Informational Card - Already Deducted Under Total Revenue",
-      },
-      {
-        title: "Refunds",
-        amount: `${state.totalRefunds}`,
-        arrowDirection: "none",
-        hoverText: "Informational Card - Already Deducted Under Total Revenue",
-      },
-      {
-        title: "Google Ads",
-        amount: `${state.googleExp}`,
-        arrowDirection: "down",
-        hoverText: "Google Ad Spend",
-      },
-      {
-        title: "Facebook Ads",
-        amount: `${state.fbExp}`,
-        arrowDirection: "down",
-        hoverText: "Facebook Ad Spend",
-      },
-      {
-        title: "Bing Ads",
-        amount: `${state.bingExp}`,
-        arrowDirection: "down",
-        hoverText: "Bing Ad Spend",
-      },
-      {
-        title: "Monthly Expenses",
-        amount: `${state.monthlyExpenses}`,
-        arrowDirection: "down",
-        hoverText: "Monthly Expenses - Pro Rated",
-      },
-      {
-        title: "Transaction Fees",
-        amount: `${state.netCreditCardFees}`,
-        arrowDirection: "down",
-        hoverText: "Credit Card Fees",
-      },
-      {
-        title: "Cashback Programs",
-        amount: `${state.cashBackTotal}`,
-        arrowDirection: "down",
-        hoverText: "Aliexpress Cashback Programs",
-      },
-      {
-        title: "Profit Margin %",
-        amount: `${state.profitMarginPerc}`,
-        arrowDirection: "none",
-        hoverText: "Profit Margin %",
-      },
-      {
-        title: "Profit",
-        amount: `${state.profit}`,
-        arrowDirection: "none",
-        hoverText: "Total Revenue - All Expenses",
-      },
-    ];
-  };
+    const startDateTest = moment(startDate.startDate);
+    const endDateTest = moment(endDate.endDate);
+    calculateDashboardValues(startDateTest, endDateTest, storeName).then(
+      (data) => {
+        dispatch({
+          type: "UPDATE",
+          data: data,
+        });
+      }
+    );
 
-  const DashboardCards = ({ state }) => {
-    return cardArray(state).map((cardElement) => {
-      return (
-        <Card
-          title={cardElement.title}
-          amount={cardElement.amount}
-          arrowDirection={cardElement.arrowDirection}
-          hoverText={cardElement.hoverText}
-          key={cardElement.title}
-        />
-      );
-    });
-  };
+    return () => {
+      handleCalendar()
+    }
+  }, [endDate, storeName]);
+
+
 
   if (state.loading) {
     return <Loading />;
   }
 
   return (
-    <PageContainer pageTitle="Dashboard">
-      <div className="row">
-        <div className="offset-xl-10 col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
-          <div className="form-group">
-            <input
-              className="form-control"
-              id="date-range"
-              type="text"
-              name="daterange"
-            />
-          </div>
+    <React.Fragment>
+      <ShowCalendarBackdrop
+        handleCalendar={handleCalendar}
+        showCalendar={showCalendar}
+      />
+      <PageContainer pageTitle="Dashboard">
+        <div className="row">
+          <CalendarComponent
+            showCalendar={showCalendar}
+            startDateItems={{
+              startDate,
+              setStartDate,
+            }}
+            endDateItems={{
+              endDate,
+              setEndDate,
+            }}
+          />
+          <CalenderInput startDate={startDate.startDate} endDate={endDate.endDate} handleCalendar={handleCalendar} />
         </div>
-      </div>
-      <div className="row">
-        <DashboardCards state={state} />
-      </div>
-    </PageContainer>
+        <div className="row">
+          <DashboardCards state={state} />
+        </div>
+        <CSVDownload dashboardData={state} startDate={startDate.startDate} endDate={endDate.endDate} />
+        <MonthlyExpenseTable monthlyExpenses={state.monthlyExpensesForTable} />
+      </PageContainer>
+
+    </React.Fragment>
   );
 };
 

@@ -1,19 +1,18 @@
 import axios from "axios";
 import moment from "moment";
 import Swal from "sweetalert2";
-import { formatDecimals } from "./calculations/calculations";
 import formatDateDiff from "../dashboard/calculations/monthlyExpDateDifference";
 
 // REVENUE ------------------------------------------------------------------------------------------
 
 // Shopify Revenue
 export const getRevenueByDateRedis = async (
-  startDateUnformat,
-  endDateUnformat,
+  startDateUnformatted,
+  endDateUnformatted,
   storeName
 ) => {
-  const startDate = moment(startDateUnformat).format("YYYY-MM-DDTHH:mm:ss");
-  const endDate = moment(endDateUnformat).format("YYYY-MM-DDTHH:mm:ss");
+  const startDate = moment(startDateUnformatted).format("YYYY-MM-DDTHH:mm:ss");
+  const endDate = moment(endDateUnformatted).format("YYYY-MM-DDTHH:mm:ss");
   let res;
   try {
     res = await axios({
@@ -141,12 +140,12 @@ export const renderRevenueByDateTotal = async (
 
 // MANUAL
 export const renderCOGSRedis = async (
-  startDateUnformat,
-  endDateUnformat,
+  startDateUnformatted,
+  endDateUnformatted,
   storeName
 ) => {
-  const startDate = moment(startDateUnformat).format("YYYY-MM-DDTHH:mm:ss");
-  const endDate = moment(endDateUnformat).format("YYYY-MM-DDTHH:mm:ss");
+  const startDate = moment(startDateUnformatted).format("YYYY-MM-DDTHH:mm:ss");
+  const endDate = moment(endDateUnformatted).format("YYYY-MM-DDTHH:mm:ss");
 
   let res;
   try {
@@ -696,12 +695,12 @@ export const renderExpenses = async (
 
 // CUSTOM COUNTRY EXPENSE
 export const getCustomCountryExpDashboard = async (
-  startDateUnformat,
-  endDateUnformat,
+  startDateUnformatted,
+  endDateUnformatted,
   storeName
 ) => {
-  const startDate = moment(startDateUnformat).format("MMMM Do YYYY, h:mm:ss a");
-  const endDate = moment(endDateUnformat).format("MMMM Do YYYY, h:mm:ss a");
+  const startDate = moment(startDateUnformatted).format("MMMM Do YYYY, h:mm:ss a");
+  const endDate = moment(endDateUnformatted).format("MMMM Do YYYY, h:mm:ss a");
 
   let res;
   try {
@@ -757,5 +756,37 @@ export const getCustomCountryExpDashboard = async (
     const totalCustomCountryCOGS = 0;
 
     return totalCustomCountryCOGS;
+  }
+};
+
+
+// INSERT EXPENSE TABLE
+
+export const renderExpenseTable = async (
+  unformattedStartDate,
+  unformattedEndDate
+) => {
+  try {
+    const startDate = unformattedStartDate.format('YYYY-MM-DD');
+    const endDate = unformattedEndDate.format('YYYY-MM-DD');
+    const res = await axios({
+      method: 'POST',
+      url: 'http://localhost:9000/api/v1/expense',
+      data: {
+        startDate,
+        endDate
+      }
+    });
+    if (res.data.status === 'success') {
+      const expenses = res.data.data.userExpenses;
+      const sortedExpenses = expenses.sort(function (a, b) {
+        return new Date(b.expenseDate) - new Date(a.expenseDate);
+      });
+
+      return sortedExpenses;
+    }
+  } catch (err) {
+    console.log('error', err.response.data.message);
+    return 0;
   }
 };

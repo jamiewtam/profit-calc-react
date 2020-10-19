@@ -7,7 +7,10 @@ import { userContext } from "../../util/Context/userContext";
 const Header = () => {
   const user = React.useContext(userContext);
 
-  const storeName = user.storeName.split(".")[0].split("-").join(" ");
+  let storeName;
+  if (user) {
+    storeName = user.storeName.split(".")[0].split("-").join(" ");
+  }
 
   return (
     <React.Fragment>

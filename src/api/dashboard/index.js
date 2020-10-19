@@ -1,7 +1,5 @@
-import React from "react";
-import Swal from "sweetalert2";
-
-import { userContext } from "../../util/Context/userContext";
+// import Swal from "sweetalert2";
+import { formatDecimals } from "./calculations/calculations";
 
 import {
   getRevenueByDateRedis,
@@ -16,6 +14,7 @@ import {
   renderCOGSByDateTotal,
   renderRefundsTotalRedis,
   getCustomCountryExpDashboard,
+  renderExpenseTable
 } from "./dataFetching";
 
 import {
@@ -50,7 +49,7 @@ const useCalculateDashboardValues = async (startDate, endDate, storeName) => {
       renderCJShippingExpense(startDate, endDate),
       renderCOGSByDateTotal(startDate, endDate),
       renderRevenueByDateTotal(startDate, endDate),
-      // renderExpenseTable(startDate, endDate),
+      renderExpenseTable(startDate, endDate),
     ]);
     // Render Refunds Data
     const [
@@ -98,6 +97,9 @@ const useCalculateDashboardValues = async (startDate, endDate, storeName) => {
 
     // Render RevenueByDate Data
     const revenueByDate = await promiseResult[11];
+
+    //Render Monthly Expenses for Monthly Expense Table
+    const monthlyExpensesForTable = await promiseResult[12]
 
     // Calculate net revenue
 
@@ -166,31 +168,57 @@ const useCalculateDashboardValues = async (startDate, endDate, storeName) => {
     const avgCOGSTotal = averageCogs(orderCount, netCOGS);
     const avgOrderValueTotal = avgOrderValue(netRevenue, orderCount);
 
-    return [
-      netRevenue,
-      netCOGS,
-      totalCustomerOrderExp,
-      grossMargin,
-      orderCount,
-      netTaxes,
-      totalNetShipping,
-      totalRefunds,
-      googleExp,
-      fbExp,
-      bingExp,
-      monthlyExpenses,
-      netCreditCardFees,
-      cashBackTotal,
-      shopifyLoanExp,
-      profitMarginPerc,
-      profit,
-      avgOrderValueTotal,
-      adCostPerOrderTotal,
-      avgCOGSTotal,
-    ];
+    // const dashboardValues = [
+    //   netRevenue,
+    //   netCOGS,
+    //   totalCustomerOrderExp,
+    //   grossMargin,
+    //   orderCount,
+    //   netTaxes,
+    //   totalNetShipping,
+    //   totalRefunds,
+    //   googleExp,
+    //   fbExp,
+    //   bingExp,
+    //   monthlyExpenses,
+    //   netCreditCardFees,
+    //   cashBackTotal,
+    //   shopifyLoanExp,
+    //   profitMarginPerc,
+    //   profit,
+    //   avgOrderValueTotal,
+    //   adCostPerOrderTotal,
+    //   avgCOGSTotal,
+    // ];
+
+    return {
+      netRevenue: formatDecimals(netRevenue),
+      netCOGS: formatDecimals(netCOGS),
+      totalCustomerOrderExp: formatDecimals(totalCustomCountryExp),
+      grossMargin: formatDecimals(grossMargin),
+      orderCount: formatDecimals(orderCount),
+      netTaxes: formatDecimals(netTaxes),
+      totalNetShipping: formatDecimals(totalNetShipping),
+      totalRefunds: formatDecimals(totalRefunds),
+      googleExp: formatDecimals(googleExp),
+      fbExp: formatDecimals(fbExp),
+      bingExp: formatDecimals(bingExp),
+      monthlyExpenses: formatDecimals(monthlyExpenses),
+      netCreditCardFees: formatDecimals(netCreditCardFees),
+      cashBackTotal: formatDecimals(cashBackTotal),
+      shopifyLoanExp: formatDecimals(shopifyLoanExp),
+      profitMarginPerc: `${profitMarginPerc.toFixed(2)}%`,
+      profit: formatDecimals(profit),
+      avgOrderValueTotal: formatDecimals(avgOrderValueTotal),
+      adCostPerOrderTotal: formatDecimals(adCostPerOrderTotal),
+      avgCOGSTotal: formatDecimals(avgCOGSTotal),
+      monthlyExpensesForTable
+    };
+
   } catch (err) {
     console.log(err);
   }
 };
+
 
 export default useCalculateDashboardValues;

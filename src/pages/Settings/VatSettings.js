@@ -2,13 +2,16 @@ import React from "react";
 
 import { FaPaperPlane } from "react-icons/fa";
 
+import { DateRangePicker, DateRange } from "react-date-range";
+import { addDays } from "date-fns";
+
 import PageContainer from "../../Layouts/Pages/PageContainer";
 import CardContainer from "../../Layouts/Pages/CardContainer";
 
 const VATSettings = (props) => {
   return (
     <PageContainer pageTitle="VAT (Value Added Tax) Settings">
-      <div id="update-vat-settings"></div>
+      ;<div id="update-vat-settings"></div>
       <CardContainer title="Revenue VAT">
         <div className="div">
           <span>VAT Setting:</span> If You Have VAT Included in Your Shopify

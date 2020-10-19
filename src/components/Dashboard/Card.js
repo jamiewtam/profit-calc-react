@@ -2,18 +2,24 @@ import React from "react";
 
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
+import { userContext } from '../../util/Context/userContext';
+
 const Card = (props) => {
-  const { title, currency, amount, arrowDirection, hoverText } = props;
-  console.log(arrowDirection);
+  const { title, amount, arrowDirection, hoverText } = props;
+  let { currencySymbol } = React.useContext(userContext)
+
+  if (title === 'Profit Margin %' || title === 'Number of Orders') {
+    currencySymbol = ''
+  }
 
   const ArrowIcon = ({ direction }) => {
-    if (arrowDirection === "up") {
+    if (direction === "up") {
       return (
         <div className="text-success">
           <FaArrowUp />
         </div>
       );
-    } else if (arrowDirection === "down") {
+    } else if (direction === "down") {
       return (
         <div className="text-danger">
           <FaArrowDown />
@@ -24,14 +30,25 @@ const Card = (props) => {
     }
   };
 
+  const gmOrProfitAmountColoring = () => {
+    let gmOrProfitColoring = ''
+    if ((title === 'Gross Margin' && amount >= 0) || (title === 'Profit' && amount >= 0)) {
+      gmOrProfitColoring = 'text-success'
+    } else if ((title === 'Gross Margin' && amount < 0) || (title === 'Profit' && amount < 0)) {
+      gmOrProfitColoring = 'text-neg-profit'
+    }
+
+    return gmOrProfitColoring
+  }
+
   return (
     <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
       <div className="card card-dashboard" id="revenue-card">
         <h5 className="card-header">{title}</h5>
         <div className="card-body">
           <div className="metric-value d-inline-block">
-            <h1 className="mb-1"> {currency} &nbsp; </h1>
-            <h1 className="mb-1" id="store-revenue">
+            <h1 className="mb-1"> {currencySymbol}  &nbsp; </h1>
+            <h1 className={`mb-1 ${gmOrProfitAmountColoring()}`}>
               {amount}
             </h1>
           </div>
