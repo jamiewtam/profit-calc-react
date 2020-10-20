@@ -2,7 +2,7 @@ import React from "react";
 
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 
-import { userContext } from '../../util/Context/userContext';
+import { userContext } from '../../../util/Context/userContext';
 
 const Card = (props) => {
   const { title, amount, arrowDirection, hoverText } = props;

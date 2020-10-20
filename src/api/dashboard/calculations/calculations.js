@@ -1,12 +1,4 @@
-export const formatDecimals = (element) => {
-  if (typeof element === "string") {
-    return true;
-  }
-  return element.toLocaleString("en", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-};
+import { formatDecimals } from '../../../util/formatting/formatDecimals';
 
 let grossMargin;
 

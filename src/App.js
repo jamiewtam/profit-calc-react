@@ -9,10 +9,15 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import Header from "./components/Navigation/Header";
 
 import Loading from "./components/General/Loading";
-// PAGES --------------------------------------------------------
-import Dashboard from "./pages/Analytics/Dashboard";
 
 import { userContext, useGetUser } from "./util/Context/userContext";
+
+
+// PAGES --------------------------------------------------------
+import Dashboard from "./pages/Analytics/Dashboard";
+import OrderBreakdown from "./pages/Analytics/OrderBreakdown";
+import GraphBreakdown from "./pages/Analytics/GraphBreakdown";
+
 
 // Expense pages
 
@@ -35,16 +40,16 @@ import AboutUs from "./pages/Footer/About";
 
 const Routing = () => {
   return (
-    <div>
+    <React.Fragment>
       {/* Analytics */}
       <Route path="/dashboard">
         <Dashboard />
       </Route>
-      <Route path="/reports/orderbreakdown">
-        <Dashboard />
+      <Route path="/reports/orders">
+        <OrderBreakdown />
       </Route>
       <Route path="/reports/lineChart">
-        <Dashboard />
+        <GraphBreakdown />
       </Route>
       {/* Expenses - COGS */}
       <Route path="/manualcogs">
@@ -90,7 +95,7 @@ const Routing = () => {
       <Route path="/about">
         <AboutUs />
       </Route>
-    </div>
+    </React.Fragment>
   );
 };
 

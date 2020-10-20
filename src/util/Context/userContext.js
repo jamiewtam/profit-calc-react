@@ -12,7 +12,11 @@ export const useGetUser = () => {
       url: "http://127.0.0.1:9000/api/v1/findDBUser",
     })
       .then((data) => {
-        setUser(data.data.data.user);
+        const user = data.data.data.user
+        if (user.timeZone === 'None Selected') {
+          user.timeZone = 'Etc/GMT+1';
+        }
+        setUser(user);
         setLoading(false);
       })
       .catch((err) => {

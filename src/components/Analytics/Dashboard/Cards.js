@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card from "../../components/Dashboard/Card";
+import Card from "./Card"
 
 const cardArray = (state) => {
   return [

@@ -1,5 +1,5 @@
 // import Swal from "sweetalert2";
-import { formatDecimals } from "./calculations/calculations";
+import { formatDecimals } from "../../util/formatting/formatDecimals";
 
 import {
   getRevenueByDateRedis,

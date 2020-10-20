@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 
-import CSVDownload from '../../components/Dashboard/CSVDownload';
+import CSVDownload from '../../components/Analytics/Dashboard/CSVDownload';
 import PageContainer from "../../Layouts/Pages/PageContainer";
 import { userContext } from "../../util/Context/userContext";
 import calculateDashboardValues from "../../api/dashboard/index";
@@ -12,9 +12,10 @@ import {
   ShowCalendarBackdrop,
   CalenderInput
 } from "../../components/Analytics/Calendar/Calendar";
-import { DashboardCards } from "../../components/Dashboard/Cards";
-import MonthlyExpenseTable from '../../components/Dashboard/MonthlyExpenseTable';
 import { useShowCalendar } from "../../util/hooks/useShowCalendar";
+import { DashboardCards } from "../../components/Analytics/Dashboard/Cards";
+import MonthlyExpenseTable from '../../components/Analytics/Dashboard/MonthlyExpenseTable';
+
 
 const dashboardReducer = (state, action) => {
   switch (action.type) {
@@ -74,8 +75,8 @@ const Dashboard = () => {
   React.useEffect(() => {
     dispatch({ type: "SEND_REQUEST" });
 
-    const startDateTest = moment(startDate.startDate);
-    const endDateTest = moment(endDate.endDate);
+    const startDateTest = moment(startDate.startDate).startOf('day');
+    const endDateTest = moment(endDate.endDate).endOf('day');
     calculateDashboardValues(startDateTest, endDateTest, storeName).then(
       (data) => {
         dispatch({
@@ -89,7 +90,6 @@ const Dashboard = () => {
       handleCalendar()
     }
   }, [endDate, storeName]);
-
 
 
   if (state.loading) {

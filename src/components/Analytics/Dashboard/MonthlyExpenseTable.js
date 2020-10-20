@@ -1,20 +1,18 @@
 import React from 'react';
 
-import CardContainer from '../../Layouts/Pages/CardContainer';
+import CardContainer from '../../../Layouts/Pages/CardContainer';
+
+import { getMonthAndYear } from '../../../util/formatting/formatDates';
 
 const IndividualMonthlyExpense = ({ monthlyExpenses }) => {
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-    console.log('monthlyExpenses:', monthlyExpenses)
+
     return monthlyExpenses.map((monthlyExpense) => {
         const { expenseDate, name, amount, _id } = monthlyExpense
-        const expenseMonth = monthNames[new Date(expenseDate).getMonth()]
-        const expenseYear = new Date(expenseDate).getFullYear()
+        const formattedExpenseDate = getMonthAndYear(expenseDate)
 
         return (
             <tr key={_id} className="table-row">
-                <td style={{ width: '20%' }}>{`${expenseMonth} ${expenseYear}`}</td>
+                <td style={{ width: '20%' }}>{formattedExpenseDate}</td>
                 <td style={{ width: '30%' }}>{name}</td>
                 <td style={{ width: '30%' }}><input value={amount} /></td>
                 <td style={{ width: '20%' }}>
