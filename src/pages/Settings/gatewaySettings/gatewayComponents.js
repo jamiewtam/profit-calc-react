@@ -6,7 +6,7 @@ import { ButtonSuccess } from "../../../components/General/Buttons";
 import { InputElement } from "../../../components/Settings/Forms";
 
 export const GatewayFeesCard = ({
-  feeName,
+  inputName,
   state,
   fixedFeeChange,
   percentageChange,
@@ -20,13 +20,13 @@ export const GatewayFeesCard = ({
           title="Percentage"
           value={state.percentage}
           handleChange={percentageChange}
-          feeName={feeName}
+          inputName={inputName}
         />
         <InputElement
           title="Fixed Fee"
           value={state.fixedFee}
           handleChange={fixedFeeChange}
-          feeName={feeName}
+          inputName={inputName}
         />
         <ButtonSuccess title="Update Gateway Fee" onClick={handleSubmit} />
       </form>
@@ -35,7 +35,7 @@ export const GatewayFeesCard = ({
 };
 
 export const ExternalGateway = ({
-  feeName,
+  inputName,
   state,
   percentageChange,
   handleSubmit,
@@ -48,7 +48,7 @@ export const ExternalGateway = ({
           title="Percentage"
           value={state.percentage}
           handleChange={percentageChange}
-          feeName={feeName}
+          inputName={inputName}
         />
         <ButtonSuccess title={"Update Gateway Fee"} onClick={handleSubmit} />
       </form>
@@ -57,7 +57,7 @@ export const ExternalGateway = ({
 };
 
 export const OtherSettings = ({
-  feeName,
+  inputName,
   state,
   fixedFeeChange,
   handleSubmit,
@@ -70,7 +70,7 @@ export const OtherSettings = ({
           title="Cash on Delivery (COD) - Per Order Fee"
           value={state.fixedFee}
           handleChange={fixedFeeChange}
-          feeName={feeName}
+          inputName={inputName}
         />
         <ButtonSuccess title={"Update Other Settings"} onClick={handleSubmit} />
         {/* <br />

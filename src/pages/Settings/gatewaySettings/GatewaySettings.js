@@ -85,7 +85,7 @@ const GatewaySettings = () => {
   return (
     <PageContainer pageTitle="Gateway Settings">
       <GatewayFeesCard
-        feeName="shopify"
+        inputName="shopify"
         state={shopifyFees}
         percentageChange={handlePercentageChange}
         fixedFeeChange={handleFixedFeeChange}
@@ -94,7 +94,7 @@ const GatewaySettings = () => {
       />
 
       <GatewayFeesCard
-        feeName="paypal"
+        inputName="paypal"
         state={paypalFees}
         percentageChange={handlePercentageChange}
         fixedFeeChange={handleFixedFeeChange}
@@ -103,7 +103,7 @@ const GatewaySettings = () => {
       />
 
       <GatewayFeesCard
-        feeName="stripe"
+        inputName="stripe"
         state={stripeFees}
         percentageChange={handlePercentageChange}
         fixedFeeChange={handleFixedFeeChange}
@@ -112,7 +112,7 @@ const GatewaySettings = () => {
       />
 
       <ExternalGateway
-        feeName="external"
+        inputName="external"
         state={externalGatewayFee}
         percentageChange={handlePercentageChange}
         handleSubmit={handleSubmit}
@@ -120,7 +120,7 @@ const GatewaySettings = () => {
       />
 
       <OtherSettings
-        feeName="cod"
+        inputName="cod"
         state={CODFee}
         fixedFeeChange={handleFixedFeeChange}
         handleSubmit={handleSubmit}

@@ -24,7 +24,7 @@ const SubNavMenu = ({ routes, url }) => {
     <ul style={NavUlMenuStyle}>
       {routes.map((route) => {
         return (
-          <li style={NavLiMenuStyle}>
+          <li style={NavLiMenuStyle} key={route.to}>
             <NavLink
               exact
               activeStyle={{ textDecoration: "underline" }}
