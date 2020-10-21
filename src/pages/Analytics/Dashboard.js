@@ -4,7 +4,7 @@ import moment from "moment";
 import CSVDownload from '../../components/Analytics/Dashboard/CSVDownload';
 import PageContainer from "../../Layouts/Pages/PageContainer";
 import { userContext } from "../../util/Context/userContext";
-import calculateDashboardValues from "../../api/dashboard/index";
+import calculateDashboardValues from '../../api/analytics/dashboard/index'
 import Loading from "../../components/General/Loading";
 
 import {

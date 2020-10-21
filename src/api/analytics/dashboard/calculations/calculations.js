@@ -1,4 +1,4 @@
-import { formatDecimals } from '../../../util/formatting/formatDecimals';
+import { formatDecimals } from "../../../../util/formatting/formatNumbers"
 
 let grossMargin;
 

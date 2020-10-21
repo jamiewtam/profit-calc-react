@@ -4,3 +4,7 @@ export const formatDecimals = (amount) => {
         maximumFractionDigits: 2,
     });
 };
+
+export const formatPercentage = (amount) => {
+    return `${(amount * 100).toFixed(2)}%`
+}

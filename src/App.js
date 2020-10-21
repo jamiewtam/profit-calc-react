@@ -28,7 +28,7 @@ import COGSByDate from "./pages/Expenses/COGS/COGSByDate";
 import CJDropshipping from "./pages/Expenses/COGS/CJDropshipping";
 
 // Settings Pages
-import GatewaySettings from "./pages/Settings/GatewaySettings";
+import GatewaySettings from "./pages/Settings/gatewaySettings/GatewaySettings";
 import GeneralSettings from "./pages/Settings/generalSettings/GeneralSettings";
 import VATSettings from "./pages/Settings/VatSettings";
 import DashboardCustomization from "./pages/Settings/DashboardCustomization";

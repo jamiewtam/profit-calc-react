@@ -3,7 +3,7 @@ import moment from 'moment';
 
 import { userContext } from '../../../util/Context/userContext';
 import { getFullFormattedDate } from '../../../util/formatting/formatDates';
-import { formatDecimals } from '../../../util/formatting/formatDecimals';
+import { formatDecimals } from '../../../util/formatting/formatNumbers';
 
 
 const Orders = ({ state }) => {

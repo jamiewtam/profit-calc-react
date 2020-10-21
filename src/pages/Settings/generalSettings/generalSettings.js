@@ -10,7 +10,7 @@ import {
   GeneralSettingsAliexpress,
   GeneralSettingsCJDropshipping,
   GeneralSettingsOther,
-} from "./GeneralSettingCards";
+} from "./generalComponents";
 
 const routes = [
   { to: "", title: "General" },
@@ -19,15 +19,12 @@ const routes = [
   { to: "/other", title: "Other" },
 ];
 
-const GeneralSettings = (props) => {
+const GeneralSettings = () => {
   const { url } = useRouteMatch();
 
   return (
     <PageContainer pageTitle="General Settings">
-      <div id="update-general-settings"></div>
-
       <SubNavMenu routes={routes} url={url} />
-
       <Route exact path="/generalSettings">
         <GeneralSettingsGeneral />
       </Route>

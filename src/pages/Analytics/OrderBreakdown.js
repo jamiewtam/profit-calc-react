@@ -12,7 +12,7 @@ import {
 } from "../../components/Analytics/Calendar/Calendar"
 import { useShowCalendar } from "../../util/hooks/useShowCalendar";
 
-import calculateOrderBreakdownValues from '../../api/orderBreakdown/dataFetching';
+import calculateOrderBreakdownValues from '../../api/analytics/orderBreakdown/dataFetching';
 
 import Orders from '../../components/Analytics/OrderBreakdown/Orders';
 
