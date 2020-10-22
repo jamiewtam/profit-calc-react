@@ -1,20 +1,17 @@
 import React from "react";
 
 import CardContainer from "../../../Layouts/Pages/CardContainer";
-
 import { ButtonSuccess } from "../../../components/General/Buttons";
-
 import {
   SelectDropdown,
   InputElement,
   TimeZoneDropdown,
+  TrueOrFalseDropdown,
 } from "../../../components/Settings/Forms";
-
 import {
   dashboardCurrencyOptions,
   currencyCodes,
   timeZones,
-  trueOrFalse,
 } from "./selectOptions";
 
 export const GeneralSettingsGeneral = ({
@@ -50,7 +47,6 @@ export const GeneralSettingsGeneral = ({
           selectorName={"adAccountBaseCurrency"}
           handleChange={handleChange}
         />
-        <br />
         <SelectDropdown
           title="Ad Account Currency"
           options={currencyCodes}
@@ -86,7 +82,6 @@ export const GeneralSettingsAliexpress = ({
           selectorName={"aliexpressBaseCurrency"}
           handleChange={handleChange}
         />
-        <br />
         <SelectDropdown
           title="Aliexpress Currency"
           options={currencyCodes}
@@ -102,11 +97,10 @@ export const GeneralSettingsAliexpress = ({
           inputName="cashBack"
         />
         <hr />
-        <SelectDropdown
+        <TrueOrFalseDropdown
           title="Decimal Place Selector: If Your Currency Displays Values
         Using Periods Instead of Commas. Select True. E.g. 10.000 is Read as Ten
         Thousand Dollars Rather than Ten Dollars."
-          options={trueOrFalse}
           selected={state.aliexpressComma}
           selectorName={"aliexpressComma"}
           handleChange={handleChange}
@@ -137,7 +131,6 @@ export const GeneralSettingsCJDropshipping = ({
           selectorName={"CJBaseCurrency"}
           handleChange={handleChange}
         />
-        <br />
         <SelectDropdown
           title="CJ Dropshipping Currency (The Currency Used to Purchase Goods)"
           options={currencyCodes}
@@ -165,7 +158,6 @@ export const GeneralSettingsOther = ({ state, handleChange, handleSubmit }) => {
           handleChange={handleChange}
           inputName="customOrderExp"
         />
-        <br />
         <InputElement
           title="[Manual COGS Syncing] Additional Shopify Cost Per Item Expense: This Cost is Added to Ever Cost Per Item Synced From Shopify. For Manual COGS Only."
           value={state.shopifyCostPerItemExtraCost}
@@ -185,28 +177,24 @@ export const GeneralSettingsOther = ({ state, handleChange, handleSubmit }) => {
           handleChange={handleChange}
           selectorName={"timeZone"}
         />
-        <br />
         <InputElement
           title="Shopify Loan Percentage: For Percentage of Sales Loans Granted By Shopify"
           value={state.shopifyLoan}
           handleChange={handleChange}
           inputName="shopifyLoan"
         />
-        <SelectDropdown
+        <TrueOrFalseDropdown
           title="Filter Dashboard by Payment Status of Paid: Dashboard only
           shows orders which are paid. For Shopify stores which use cash of
           delivery."
-          options={trueOrFalse}
           selected={state.filterByPaid}
           selectorName={"filterByPaid"}
           handleChange={handleChange}
         />
-        <br />
-        <SelectDropdown
+        <TrueOrFalseDropdown
           title="Orders Are Frequently Edited: </span>If You Frequently Edit Orders
           e.g. Removing Items to Existing Orders Rather Than Refunding Them.
           Select True"
-          options={trueOrFalse}
           selected={state.editOrderFrequently}
           selectorName={"editOrderFrequently"}
           handleChange={handleChange}

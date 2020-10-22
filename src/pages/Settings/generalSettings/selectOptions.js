@@ -78,5 +78,3 @@ export const currencyCodes = [
   "SGD",
   "USD",
 ];
-
-export const trueOrFalse = ["True", "False"];

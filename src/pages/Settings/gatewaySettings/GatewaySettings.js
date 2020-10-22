@@ -1,131 +1,115 @@
 import React from "react";
-
 import { userContext } from "../../../util/Context/userContext";
-
+//COMPONENTS
 import PageContainer from "../../../Layouts/Pages/PageContainer";
-
+import { ButtonSuccess } from "../../../components/General/Buttons";
+import { InputElement } from "../../../components/Settings/Forms";
+import CardContainer from "../../../Layouts/Pages/CardContainer";
+//FUNCTIONS
+import { formatPercentage } from "../../../util/formatting/formatNumbers";
+import { settingsReducer } from "../../../util/factoryFunctions/general";
 import { submitGatewaySettings } from "../../../api/settings/settingsPages/gatewaySettings";
 
-import { formatPercentage } from "../../../util/formatting/formatNumbers";
-
-import {
-  ExternalGateway,
-  GatewayFeesCard,
-  OtherSettings,
-} from "./gatewayComponents";
-
 const GatewaySettings = () => {
-  const user = React.useContext(userContext);
+  const {
+    shopifyCardFee,
+    shopifyCardFeeFixed,
+    paypalCardFee,
+    paypalCardFeeFixed,
+    stripeCardFee,
+    stripeCardFeeFixed,
+    externalGatewayFee,
+    cashOnDeliveryFee,
+  } = React.useContext(userContext);
 
-  const [shopifyFees, setShopifyFees] = React.useState({
-    percentage: formatPercentage(user.shopifyCardFee),
-    fixedFee: user.shopifyCardFeeFixed,
+  const [state, dispatch] = React.useReducer(settingsReducer, {
+    shopifyCardFee: formatPercentage(shopifyCardFee),
+    shopifyCardFeeFixed,
+    paypalCardFee: formatPercentage(paypalCardFee),
+    paypalCardFeeFixed,
+    stripeCardFee: formatPercentage(stripeCardFee),
+    stripeCardFeeFixed,
+    externalGatewayFee: formatPercentage(externalGatewayFee),
+    cashOnDeliveryFee,
   });
 
-  const [paypalFees, setPaypalFees] = React.useState({
-    percentage: formatPercentage(user.paypalCardFee),
-    fixedFee: user.paypalCardFeeFixed,
-  });
-
-  const [stripeFees, setStripeFees] = React.useState({
-    percentage: formatPercentage(user.stripeCardFee),
-    fixedFee: user.stripeCardFeeFixed,
-  });
-
-  const [externalGatewayFee, setExternalGatewayFee] = React.useState({
-    percentage: formatPercentage(user.externalGatewayFee),
-  });
-
-  const [CODFee, setCODFee] = React.useState({
-    fixedFee: user.cashOnDeliveryFee,
-  });
-
-  const handlePercentageChange = (title, percentage) => {
-    switch (title) {
-      case "shopify":
-        return setShopifyFees({ ...shopifyFees, percentage });
-      case "paypal":
-        return setPaypalFees({ ...paypalFees, percentage });
-      case "stripe":
-        return setStripeFees({ ...stripeFees, percentage });
-      case "external":
-        return setExternalGatewayFee({ ...externalGatewayFee, percentage });
-      default:
-        break;
-    }
-  };
-
-  const handleFixedFeeChange = (title, fixedFee) => {
-    switch (title) {
-      case "shopify":
-        return setShopifyFees({ ...shopifyFees, fixedFee });
-      case "paypal":
-        return setPaypalFees({ ...paypalFees, fixedFee });
-      case "stripe":
-        return setStripeFees({ ...stripeFees, fixedFee });
-      case "cod":
-        return setCODFee({ ...CODFee, fixedFee });
-      default:
-        break;
-    }
+  const handleChange = (inputName, value) => {
+    dispatch({
+      type: "UPDATE",
+      [inputName]: value,
+    });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    await submitGatewaySettings(
-      shopifyFees,
-      paypalFees,
-      stripeFees,
-      externalGatewayFee,
-      CODFee
-    );
+    await submitGatewaySettings(state);
   };
 
   return (
     <PageContainer pageTitle="Gateway Settings">
-      <GatewayFeesCard
-        inputName="shopify"
-        state={shopifyFees}
-        percentageChange={handlePercentageChange}
-        fixedFeeChange={handleFixedFeeChange}
-        handleSubmit={handleSubmit}
-        title="Shopify Fees"
-      />
-
-      <GatewayFeesCard
-        inputName="paypal"
-        state={paypalFees}
-        percentageChange={handlePercentageChange}
-        fixedFeeChange={handleFixedFeeChange}
-        handleSubmit={handleSubmit}
-        title="Paypal Fees"
-      />
-
-      <GatewayFeesCard
-        inputName="stripe"
-        state={stripeFees}
-        percentageChange={handlePercentageChange}
-        fixedFeeChange={handleFixedFeeChange}
-        handleSubmit={handleSubmit}
-        title="Stripe Fees"
-      />
-
-      <ExternalGateway
-        inputName="external"
-        state={externalGatewayFee}
-        percentageChange={handlePercentageChange}
-        handleSubmit={handleSubmit}
-        title="External Gateway Fee"
-      />
-
-      <OtherSettings
-        inputName="cod"
-        state={CODFee}
-        fixedFeeChange={handleFixedFeeChange}
-        handleSubmit={handleSubmit}
-        title="Other Gateway Settings"
-      />
+      <CardContainer title="Shopify Fees">
+        <InputElement
+          title="Percentage"
+          value={state.shopifyCardFee}
+          handleChange={handleChange}
+          inputName="shopifyCardFee"
+        />
+        <InputElement
+          title="Fixed Fee"
+          value={state.shopifyCardFeeFixed}
+          handleChange={handleChange}
+          inputName="shopifyCardFeeFixed"
+        />
+        <ButtonSuccess title="Update Gateway Fee" onClick={handleSubmit} />
+      </CardContainer>
+      <CardContainer title="Paypal Fees">
+        <InputElement
+          title="Percentage"
+          value={state.paypalCardFee}
+          handleChange={handleChange}
+          inputName="paypalCardFee"
+        />
+        <InputElement
+          title="Fixed Fee"
+          value={state.paypalCardFeeFixed}
+          handleChange={handleChange}
+          inputName="paypalCardFeeFixed"
+        />
+        <ButtonSuccess title="Update Gateway Fee" onClick={handleSubmit} />
+      </CardContainer>
+      <CardContainer title="Stripe Fees">
+        <InputElement
+          title="Percentage"
+          value={state.stripeCardFee}
+          handleChange={handleChange}
+          inputName="stripeCardFee"
+        />
+        <InputElement
+          title="Fixed Fee"
+          value={state.stripeCardFeeFixed}
+          handleChange={handleChange}
+          inputName="stripeCardFeeFixed"
+        />
+        <ButtonSuccess title="Update Gateway Fee" onClick={handleSubmit} />
+      </CardContainer>
+      <CardContainer title="External Gateway Fees">
+        <InputElement
+          title="Percentage"
+          value={state.externalGatewayFee}
+          handleChange={handleChange}
+          inputName="externalGatewayFee"
+        />
+        <ButtonSuccess title="Update Gateway Fee" onClick={handleSubmit} />
+      </CardContainer>
+      <CardContainer title="External Gateway Fees">
+        <InputElement
+          title="Fixed Fee"
+          value={state.cashOnDeliveryFee}
+          handleChange={handleChange}
+          inputName="cashOnDeliveryFee"
+        />
+        <ButtonSuccess title="Update Gateway Fee" onClick={handleSubmit} />
+      </CardContainer>
     </PageContainer>
   );
 };

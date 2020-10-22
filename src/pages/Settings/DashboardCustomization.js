@@ -1,62 +1,92 @@
 import React from "react";
-import { FaPaperPlane } from "react-icons/fa";
-
+import { userContext } from "../../util/Context/userContext";
+//COMPONENTS
 import PageContainer from "../../Layouts/Pages/PageContainer";
 import CardContainer from "../../Layouts/Pages/CardContainer";
+import { DashboardCustomizationDropdown } from "../../components/Settings/Forms";
+import { ButtonSuccess } from "../../components/General/Buttons";
+//FUNCTIONS
+import { submitDashboardSettings } from "../../api/settings/settingsPages/dashboadCustomization";
+import { settingsReducer } from "../../util/factoryFunctions/general";
 
-const DashboardCustomization = (params) => {
+const DashboardCustomization = () => {
+  const { dashboardSelection } = React.useContext(userContext);
+  const {
+    numberOfOrdersSelector,
+    taxesCollectedSelector,
+    shippingChargedSelector,
+    profitMarginSelector,
+    cashbackDashboardSelector,
+    shopifyLoanDashboardSelector,
+  } = JSON.parse(dashboardSelection);
+
+  const [state, dispatch] = React.useReducer(settingsReducer, {
+    numberOfOrdersSelector,
+    taxesCollectedSelector,
+    shippingChargedSelector,
+    profitMarginSelector,
+    cashbackDashboardSelector,
+    shopifyLoanDashboardSelector,
+  });
+
+  const handleChange = (inputName, value) => {
+    dispatch({
+      type: "UPDATE",
+      [inputName]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await submitDashboardSettings(state);
+  };
+
   return (
     <PageContainer pageTitle="Dashboard Customization">
-      <div id="update-dashboard-settings"></div>
       <CardContainer>
         <h4 className="mb-0">
           Customize Where Each Card Show Up on the Dashboard
         </h4>
-        "Number Of Orders" Dashboard Location
-        <select
-          className="custom-select"
-          id="number-of-orders-selector"
-        ></select>
-        <br />
-        <br />
-        "Taxes Collected" Dashboard Location
-        <select
-          className="custom-select"
-          id="taxes-collected-selector"
-        ></select>
-        <br />
-        <br />
-        "Shipping Charged" Dashboard Location
-        <select
-          className="custom-select"
-          id="shipping-charged-selector"
-        ></select>
-        <br />
-        <br />
-        "Profit Margin %" Dashboard Location
-        <select className="custom-select" id="profit-margin-selector"></select>
-        <br />
-        <br />
-        "Cashback Programs" Dashboard Location
-        <select
-          className="custom-select"
-          id="cashback-dashboard-selector"
-        ></select>
-        <br />
-        <br />
-        "Shopify Loan" Dashboard Location
-        <select
-          className="custom-select"
-          id="shopify-loan-dashboard-selector"
-        ></select>
-        <br />
-        <br />
-        <button
-          className="btn-outline-success btn-lg"
-          id="submit-dashboard-settings"
-        >
-          <FaPaperPlane /> Update Dashboard Display Settings
-        </button>
+        <DashboardCustomizationDropdown
+          title="Number Of Orders Dashboard Location"
+          selected={state.numberOfOrdersSelector}
+          selectorName={"VATSelector"}
+          handleChange={handleChange}
+        />
+        <DashboardCustomizationDropdown
+          title="Taxes Collected Dashboard Location"
+          selected={state.taxesCollectedSelector}
+          selectorName={"taxesCollectedSelector"}
+          handleChange={handleChange}
+        />
+        <DashboardCustomizationDropdown
+          title="Shipping Charged Dashboard Location"
+          selected={state.shippingChargedSelector}
+          selectorName={"shippingChargedSelector"}
+          handleChange={handleChange}
+        />
+        <DashboardCustomizationDropdown
+          title="Profit Margin % Dashboard Location"
+          selected={state.profitMarginSelector}
+          selectorName={"profitMarginSelector"}
+          handleChange={handleChange}
+        />
+        <DashboardCustomizationDropdown
+          title="Cashback Programs Dashboard Location"
+          selected={state.cashbackDashboardSelector}
+          selectorName={"cashbackDashboardSelector"}
+          handleChange={handleChange}
+        />
+        <DashboardCustomizationDropdown
+          title="Shopify Loans Dashboard Location"
+          selected={state.shopifyLoanDashboardSelector}
+          selectorName={"shopifyLoanDashboardSelector"}
+          handleChange={handleChange}
+        />
+        <ButtonSuccess
+          title="Update Dashboard Customization"
+          onClick={handleSubmit}
+        />
       </CardContainer>
     </PageContainer>
   );

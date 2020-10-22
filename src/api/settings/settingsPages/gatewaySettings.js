@@ -2,42 +2,51 @@ import Swal from "sweetalert2";
 
 import { updateGatewaySettings } from "./dataFetching/dataFetching";
 
-export const submitGatewaySettings = (
-  shopifyFees,
-  paypalFees,
-  stripeFees,
+export const submitGatewaySettings = ({
+  shopifyCardFee,
+  shopifyCardFeeFixed,
+  paypalCardFee,
+  paypalCardFeeFixed,
+  stripeCardFee,
+  stripeCardFeeFixed,
   externalGatewayFee,
-  CODFee
-) => {
-  const ShopifyFeePercentage = shopifyFees.percentage
+  cashOnDeliveryFee,
+}) => {
+  console.log(
+    shopifyCardFee,
+    shopifyCardFeeFixed,
+    paypalCardFee,
+    paypalCardFeeFixed,
+    stripeCardFee,
+    stripeCardFeeFixed,
+    externalGatewayFee,
+    cashOnDeliveryFee
+  );
+  const ShopifyFeePercentage = shopifyCardFee
     .replace("%", "")
     .replace(/,/g, ".");
 
-  const PaypalFeePercentage = paypalFees.percentage
-    .replace("%", "")
-    .replace(/,/g, ".");
+  const PaypalFeePercentage = paypalCardFee.replace("%", "").replace(/,/g, ".");
 
-  const StripeFeePercentage = stripeFees.percentage
-    .replace("%", "")
-    .replace(/,/g, ".");
+  const StripeFeePercentage = stripeCardFee.replace("%", "").replace(/,/g, ".");
 
-  const ExternalGatewayFeePercentage = externalGatewayFee.percentage
+  const ExternalGatewayFeePercentage = externalGatewayFee
     .replace("%", "")
     .replace(/,/g, ".");
 
   // Get fixed fee values
   const updatedShopifyFeeFixed = parseFloat(
-    shopifyFees.fixedFee.toString().replace(/,/g, ".")
+    shopifyCardFeeFixed.toString().replace(/,/g, ".")
   );
   const updatedPaypalFeeFixed = parseFloat(
-    paypalFees.fixedFee.toString().replace(/,/g, ".")
+    paypalCardFeeFixed.toString().replace(/,/g, ".")
   );
   const updatedStripeFeeFixed = parseFloat(
-    stripeFees.fixedFee.toString().replace(/,/g, ".")
+    stripeCardFeeFixed.toString().replace(/,/g, ".")
   );
 
   const updatedCashOnDeliveryFeeFixed = parseFloat(
-    CODFee.fixedFee.toString().replace(/,/g, ".")
+    cashOnDeliveryFee.toString().replace(/,/g, ".")
   );
 
   if (

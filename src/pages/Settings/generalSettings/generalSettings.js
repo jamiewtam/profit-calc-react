@@ -1,20 +1,18 @@
 import React from "react";
-
-import { userContext } from "../../../util/Context/userContext";
-
 import { Route, useRouteMatch } from "react-router-dom";
-
+import { userContext } from "../../../util/Context/userContext";
+//COMPONENTS
 import SubNavMenu from "../../../components/Navigation/SubNavMenu";
 import PageContainer from "../../../Layouts/Pages/PageContainer";
-
-import { submitGeneralSettings } from "../../../api/settings/settingsPages/generalSettings";
-
 import {
   GeneralSettingsGeneral,
   GeneralSettingsAliexpress,
   GeneralSettingsCJDropshipping,
   GeneralSettingsOther,
 } from "./generalComponents";
+//FUNCTIONS
+import { submitGeneralSettings } from "../../../api/settings/settingsPages/generalSettings";
+import { settingsReducer } from "../../../util/factoryFunctions/general";
 
 const routes = [
   { to: "", title: "General" },
@@ -22,19 +20,6 @@ const routes = [
   { to: "/CJDropshipping", title: "CJ Dropshipping" },
   { to: "/other", title: "Other" },
 ];
-
-const generalSettingsReducer = (state, action) => {
-  console.log(action);
-  switch (action.type) {
-    case "UPDATE":
-      return {
-        ...state,
-        ...action,
-      };
-    default:
-      return state;
-  }
-};
 
 const GeneralSettings = () => {
   const {
@@ -55,7 +40,7 @@ const GeneralSettings = () => {
     timeZone,
   } = React.useContext(userContext);
 
-  const [state, dispatch] = React.useReducer(generalSettingsReducer, {
+  const [state, dispatch] = React.useReducer(settingsReducer, {
     currencySymbol,
     adAccountBaseCurrency,
     adAccountCurrency,
