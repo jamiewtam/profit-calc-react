@@ -14,7 +14,7 @@ import {
   renderCOGSByDateTotal,
   renderRefundsTotalRedis,
   getCustomCountryExpDashboard,
-  renderExpenseTable
+  renderExpenseTable,
 } from "./dataFetching";
 
 import {
@@ -99,7 +99,7 @@ const useCalculateDashboardValues = async (startDate, endDate, storeName) => {
     const revenueByDate = await promiseResult[11];
 
     //Render Monthly Expenses for Monthly Expense Table
-    const monthlyExpensesForTable = await promiseResult[12]
+    const monthlyExpensesForTable = await promiseResult[12];
 
     // Calculate net revenue
 
@@ -168,29 +168,6 @@ const useCalculateDashboardValues = async (startDate, endDate, storeName) => {
     const avgCOGSTotal = averageCogs(orderCount, netCOGS);
     const avgOrderValueTotal = avgOrderValue(netRevenue, orderCount);
 
-    // const dashboardValues = [
-    //   netRevenue,
-    //   netCOGS,
-    //   totalCustomerOrderExp,
-    //   grossMargin,
-    //   orderCount,
-    //   netTaxes,
-    //   totalNetShipping,
-    //   totalRefunds,
-    //   googleExp,
-    //   fbExp,
-    //   bingExp,
-    //   monthlyExpenses,
-    //   netCreditCardFees,
-    //   cashBackTotal,
-    //   shopifyLoanExp,
-    //   profitMarginPerc,
-    //   profit,
-    //   avgOrderValueTotal,
-    //   adCostPerOrderTotal,
-    //   avgCOGSTotal,
-    // ];
-
     return {
       netRevenue: formatDecimals(netRevenue),
       netCOGS: formatDecimals(netCOGS),
@@ -212,13 +189,11 @@ const useCalculateDashboardValues = async (startDate, endDate, storeName) => {
       avgOrderValueTotal: formatDecimals(avgOrderValueTotal),
       adCostPerOrderTotal: formatDecimals(adCostPerOrderTotal),
       avgCOGSTotal: formatDecimals(avgCOGSTotal),
-      monthlyExpensesForTable
+      monthlyExpensesForTable,
     };
-
   } catch (err) {
     console.log(err);
   }
 };
-
 
 export default useCalculateDashboardValues;

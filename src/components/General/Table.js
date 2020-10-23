@@ -25,7 +25,7 @@ export const TableHead = ({ headers }) => {
 export const TableBody = ({ children }) => {
   return (
     <tbody className="expense-page-table" id="expense-table-body">
-      <tr className="table-row">{children}</tr>
+      {children}
     </tbody>
   );
 };

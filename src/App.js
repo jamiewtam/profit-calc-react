@@ -12,16 +12,14 @@ import Loading from "./components/General/Loading";
 
 import { userContext, useGetUser } from "./util/Context/userContext";
 
-
 // PAGES --------------------------------------------------------
 import Dashboard from "./pages/Analytics/Dashboard";
 import OrderBreakdown from "./pages/Analytics/OrderBreakdown";
 import GraphBreakdown from "./pages/Analytics/GraphBreakdown";
 
-
 // Expense pages
 
-import MonthlyExpenses from "./pages/Expenses/MonthlyExpenses";
+import MonthlyExpenses from "./pages/Expenses/MonthlyExpenses/MonthlyExpenses";
 import AdAccountLogins from "./pages/Expenses/AdAccountLogins/AdAccountLogins";
 import AliexpressCOGS from "./pages/Expenses/COGS/Aliexpress";
 import COGSByDate from "./pages/Expenses/COGS/COGSByDate";
