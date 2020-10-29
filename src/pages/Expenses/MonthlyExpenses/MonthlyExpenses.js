@@ -10,7 +10,8 @@ import {
   MonthlyExpenseFromDB,
   submitMonthlyExpenseHeaders,
   allMonthlyExpensesHeaders,
-} from "./monthlyExpenseComponents";
+  monthlyExpenseReducer,
+} from "./components";
 //FUNCTIONS
 import {
   createMonthlyExpense,
@@ -19,51 +20,38 @@ import {
 } from "../../../api/expenses/index";
 import { renderExpenseTable } from "../../../api/analytics/dashboard/dataFetching";
 
-export const monthlyExpenseReducer = (state, action) => {
-  switch (action.type) {
-    case "UPDATE":
-      return {
-        ...state,
-        ...action,
-      };
-    case "RESET":
-      return {
-        name: "Name",
-        amount: 0,
-        expenseDate: "2020-01",
-        expenseTypeValue: 1,
-      };
-    default:
-      return state;
-  }
-};
-
 const MonthlyExpenses = () => {
+  //REDUCER
   const [state, dispatch] = React.useReducer(monthlyExpenseReducer, {
     name: "",
     amount: "",
     expenseDate: "2020-01",
     expenseTypeValue: 1,
   });
+  // SETUP STATE
   const [monthlyExpDB, setMonthlyExpDB] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [submit, setSubmit] = React.useState(false);
 
+  // NEW MONTHLY EXPENSES
   const handleChange = (inputName, value) => {
     dispatch({
       type: "UPDATE",
       [inputName]: value,
     });
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     await createMonthlyExpense(state);
     dispatch({
       type: "RESET",
     });
+    setSubmit((prevSubmit) => {
+      return !prevSubmit;
+    });
   };
 
+  //EXISTING MONTHLY EXPENSES
   const handleMonthlyExpChange = (expenseID, value) => {
     setMonthlyExpDB((prevMonthlyExpDB) => {
       const index = prevMonthlyExpDB.findIndex((exp) => {
@@ -73,11 +61,9 @@ const MonthlyExpenses = () => {
       return prevMonthlyExpDB;
     });
   };
-
   const handleMonthlyExpEdit = (expenseID, amount) => {
     editMonthlyExpense(expenseID, amount);
   };
-
   const handleMonthlyExpDelete = (expenseID) => {
     deleteMonthlyExpense(expenseID);
     setSubmit((prevSubmit) => {
@@ -85,6 +71,7 @@ const MonthlyExpenses = () => {
     });
   };
 
+  // LOAD TABLE DATA
   React.useEffect(() => {
     const startDateMonthlyExp = moment("1/1/1990");
     const endDateMonthlyExp = moment("1/1/2100");

@@ -1,5 +1,5 @@
 import React from "react";
-
+//COMPONENTS
 import {
   ButtonSuccess,
   ButtonEdit,
@@ -7,6 +7,37 @@ import {
 } from "../../../components/General/Buttons";
 import { getMonthAndYear } from "../../../util/formatting/formatDates";
 
+//HEADERS
+export const submitMonthlyExpenseHeaders = [
+  "Expense Type",
+  "Date",
+  "Expense Name",
+  "Amount",
+  "",
+];
+export const allMonthlyExpensesHeaders = ["Date", "Expense Name", "Amount", ""];
+
+//REDUCER
+export const monthlyExpenseReducer = (state, action) => {
+  switch (action.type) {
+    case "UPDATE":
+      return {
+        ...state,
+        ...action,
+      };
+    case "RESET":
+      return {
+        name: "Name",
+        amount: 0,
+        expenseDate: "2020-01",
+        expenseTypeValue: 1,
+      };
+    default:
+      return state;
+  }
+};
+
+// TABLE COMPONENTS
 export const CreateNewMonthlyExpense = ({
   handleChange,
   state,
@@ -66,7 +97,6 @@ export const CreateNewMonthlyExpense = ({
     </tr>
   );
 };
-
 export const MonthlyExpenseFromDB = ({
   monthlyExpDB,
   handleMonthlyExpChange,
@@ -101,12 +131,3 @@ export const MonthlyExpenseFromDB = ({
     );
   });
 };
-
-export const submitMonthlyExpenseHeaders = [
-  "Expense Type",
-  "Date",
-  "Expense Name",
-  "Amount",
-  "",
-];
-export const allMonthlyExpensesHeaders = ["Date", "Expense Name", "Amount", ""];

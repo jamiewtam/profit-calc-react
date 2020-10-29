@@ -699,7 +699,9 @@ export const getCustomCountryExpDashboard = async (
   endDateUnformatted,
   storeName
 ) => {
-  const startDate = moment(startDateUnformatted).format("MMMM Do YYYY, h:mm:ss a");
+  const startDate = moment(startDateUnformatted).format(
+    "MMMM Do YYYY, h:mm:ss a"
+  );
   const endDate = moment(endDateUnformatted).format("MMMM Do YYYY, h:mm:ss a");
 
   let res;
@@ -759,7 +761,6 @@ export const getCustomCountryExpDashboard = async (
   }
 };
 
-
 // INSERT EXPENSE TABLE
 
 export const renderExpenseTable = async (
@@ -767,17 +768,17 @@ export const renderExpenseTable = async (
   unformattedEndDate
 ) => {
   try {
-    const startDate = unformattedStartDate.format('YYYY-MM-DD');
-    const endDate = unformattedEndDate.format('YYYY-MM-DD');
+    const startDate = unformattedStartDate.format("YYYY-MM-DD");
+    const endDate = unformattedEndDate.format("YYYY-MM-DD");
     const res = await axios({
-      method: 'POST',
-      url: 'http://localhost:9000/api/v1/expense',
+      method: "POST",
+      url: "http://localhost:9000/api/v1/expense",
       data: {
         startDate,
-        endDate
-      }
+        endDate,
+      },
     });
-    if (res.data.status === 'success') {
+    if (res.data.status === "success") {
       const expenses = res.data.data.userExpenses;
       const sortedExpenses = expenses.sort(function (a, b) {
         return new Date(b.expenseDate) - new Date(a.expenseDate);
@@ -786,7 +787,7 @@ export const renderExpenseTable = async (
       return sortedExpenses;
     }
   } catch (err) {
-    console.log('error', err.response.data.message);
+    console.log("error", err.response.data.message);
     return 0;
   }
 };

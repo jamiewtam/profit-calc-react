@@ -23,7 +23,7 @@ import ManualCOGS from "./pages/Expenses/COGS/ManualCOGS/ManualCOGS";
 import MonthlyExpenses from "./pages/Expenses/MonthlyExpenses/MonthlyExpenses";
 import AdAccountLogins from "./pages/Expenses/AdAccountLogins/AdAccountLogins";
 import AliexpressCOGS from "./pages/Expenses/COGS/Aliexpress";
-import COGSByDate from "./pages/Expenses/COGS/COGSByDate";
+import COGSByDate from "./pages/Expenses/COGS/COGSByDate/COGSByDate";
 import CJDropshipping from "./pages/Expenses/COGS/CJDropshipping";
 
 // Settings Pages

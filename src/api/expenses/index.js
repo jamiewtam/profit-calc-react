@@ -15,3 +15,11 @@ export {
   editMonthlyExpense,
   deleteMonthlyExpense,
 } from "./monthlyExp/monthlyExpenses";
+
+export {
+  updateCOGSByDateToggle,
+  renderCOGSByDateTable,
+  createCOGSByDateItem,
+  editCOGSByDateItem,
+  deleteCOGSByDateItem,
+} from "./COGSByDate";
