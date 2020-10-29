@@ -12,13 +12,13 @@ import {
 import { ToggleElement } from "../../../../components/Settings/Forms";
 //FUNCTION
 import {
-  getAllManuelCOGS,
-  updateCOGS,
+  getAllManualCOGS,
+  updateManualCOGSItem,
   syncAllProductsRedis,
   syncAllShopifyCostPerItemRedis,
   toggleManualCOGS,
 } from "../../../../api/expenses";
-import { columns, formatManualCOGS } from "./factoryFunctions";
+import { columns, formatManualCOGS } from "./components";
 import { userContext } from "../../../../util/Context/userContext";
 
 const ManualCOGS = () => {
@@ -37,7 +37,7 @@ const ManualCOGS = () => {
     const newCOGS = parseFloat(COGSItem.cogsValue);
     const newShippingCost = parseFloat(COGSItem.shippingCostValue);
     const productID = COGSItem.variantID;
-    updateCOGS(productID, newCOGS, newShippingCost);
+    updateManualCOGSItem(productID, newCOGS, newShippingCost);
   };
 
   const handleChange = (type, newAmount, productId) => {
@@ -109,7 +109,7 @@ const ManualCOGS = () => {
   });
 
   React.useEffect(() => {
-    getAllManuelCOGS().then((data) => {
+    getAllManualCOGS().then((data) => {
       setManualCOGSTable(formatManualCOGS(data));
       setLoading(false);
     });

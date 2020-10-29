@@ -1,10 +1,10 @@
 export {
-  getAllManuelCOGS,
-  updateCOGS,
+  getAllManualCOGS,
+  updateManualCOGSItem,
   syncAllProductsRedis,
   syncAllShopifyCostPerItemRedis,
   toggleManualCOGS,
-} from "./manualCOGS/dataFetching";
+} from "./manualCOGS";
 
 export { toggleAliexpress, toggleCJDropshipping } from "./other/dataFetching";
 
@@ -14,7 +14,7 @@ export {
   createMonthlyExpense,
   editMonthlyExpense,
   deleteMonthlyExpense,
-} from "./monthlyExp/monthlyExpenses";
+} from "./monthlyExp";
 
 export {
   updateCOGSByDateToggle,
@@ -23,3 +23,8 @@ export {
   editCOGSByDateItem,
   deleteCOGSByDateItem,
 } from "./COGSByDate";
+
+export {
+  toggleCustomCountryExp,
+  updateCustomCountryExp,
+} from "./customCountryExp/index";

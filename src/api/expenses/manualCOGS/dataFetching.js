@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import axios from "axios";
 
-export const updateCOGS = async (
+export const updateCOGSRoute = async (
   productVariantID,
   newProductCost,
   newProductShippingCost
@@ -33,7 +33,7 @@ export const updateCOGS = async (
 
 // GET ALL COGS
 
-export const getAllManuelCOGS = async () => {
+export const getAllManualCOGS = async () => {
   try {
     const res = await axios({
       method: "GET",

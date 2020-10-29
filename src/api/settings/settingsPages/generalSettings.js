@@ -19,7 +19,6 @@ export const submitGeneralSettings = ({
   shopifyLoan,
   timeZone,
 }) => {
-  console.log("request receioved");
   // 1. Check if numbers entered are both numbers
 
   // Replace percentage for cashback selector if there

@@ -25,6 +25,7 @@ import AdAccountLogins from "./pages/Expenses/AdAccountLogins/AdAccountLogins";
 import AliexpressCOGS from "./pages/Expenses/COGS/Aliexpress";
 import COGSByDate from "./pages/Expenses/COGS/COGSByDate/COGSByDate";
 import CJDropshipping from "./pages/Expenses/COGS/CJDropshipping";
+import CustomCountryExpense from "./pages/Expenses/CustomCountryExpense/CustomCountryExpense";
 
 // Settings Pages
 import GatewaySettings from "./pages/Settings/gatewaySettings/GatewaySettings";
@@ -69,7 +70,9 @@ const Routing = () => {
       <Route path="/adAccountLogins">
         <AdAccountLogins />
       </Route>
-      <Route path="/customCountryExpenses"></Route>
+      <Route path="/customCountryExpense">
+        <CustomCountryExpense />
+      </Route>
       {/* Settings */}
       <Route path="/settings">
         <GatewaySettings />
