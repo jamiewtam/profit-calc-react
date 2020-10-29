@@ -4,7 +4,7 @@ import {
   deleteTableExpense,
   createNewExpenseItem,
   createRepeatingExpenseItem,
-} from "../dataFetching";
+} from "./dataFetching";
 
 import { repeatingMonthlyExpCalculator } from "./repeatingMonthlyExpCalc";
 

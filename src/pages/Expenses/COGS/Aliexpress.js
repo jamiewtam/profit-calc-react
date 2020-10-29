@@ -1,28 +1,28 @@
 import React from "react";
-
+// COMPONENTS
 import PageContainer from "../../../Layouts/Pages/PageContainer";
 import CardContainer from "../../../Layouts/Pages/CardContainer";
+//FUNCTIONS
+import { ToggleElement } from "../../../components/Settings/Forms";
+import { userContext } from "../../../util/Context/userContext";
+import { toggleAliexpress } from "../../../api/expenses";
 
-const AliexpressCOGS = (props) => {
+const AliexpressCOGS = () => {
+  const { aliexpressSetting } = React.useContext(userContext);
+  const [aliSetting, setAliSetting] = React.useState(aliexpressSetting);
+
+  const handleChange = async () => {
+    await toggleAliexpress();
+    setAliSetting((prevSetting) => {
+      return !prevSetting;
+    });
+  };
+
   return (
     <PageContainer pageTitle="Aliexpress COGS">
-      <CardContainer>
+      <CardContainer title="Include Aliexpress COGS in Dashboard">
         <form>
-          <div className="custom-control custom-switch">
-            <input
-              className="custom-control-input"
-              id="aliexpressSettingsSwitch"
-              type="checkbox"
-              checked="checked"
-            />
-
-            <label
-              className="custom-control-label"
-              htmlFor="aliexpressSettingsSwitch"
-            >
-              Include Aliexpress COGS in Dashboard
-            </label>
-          </div>
+          <ToggleElement checked={aliSetting} onChange={handleChange} />
         </form>
       </CardContainer>
 
@@ -33,9 +33,9 @@ const AliexpressCOGS = (props) => {
             width="60%"
             height="300px"
             src="https://www.youtube.com/embed/IahKgKZsZ5k"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullscreen=""
+            allowFullScreen=""
           ></iframe>
         </div>
         <div className="div">

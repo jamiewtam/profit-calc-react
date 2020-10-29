@@ -1,42 +1,61 @@
 import React from "react";
-
-import { FaPaperPlane } from "react-icons/fa";
-
+//COMPONENTS
 import PageContainer from "../../../Layouts/Pages/PageContainer";
 import CardContainer from "../../../Layouts/Pages/CardContainer";
+import { ButtonSuccess } from "../../../components/General/Buttons";
+//FUNCTIONS
+import {
+  ToggleElement,
+  InputElement,
+} from "../../../components/Settings/Forms";
+import { userContext } from "../../../util/Context/userContext";
+import {
+  toggleCJDropshipping,
+  submitCJShippingAccessToken,
+} from "../../../api/expenses";
 
-const CJDropshipping = (props) => {
+const CJDropshipping = () => {
+  const user = React.useContext(userContext);
+  console.log("user:", user);
+  const { CJShippingSetting } = React.useContext(userContext);
+  const [CJSetting, setCJSetting] = React.useState(CJShippingSetting);
+
+  const [CJAccessToken, setCJAccessToken] = React.useState(
+    "Replace Current Key"
+  );
+
+  const handleChange = async () => {
+    await toggleCJDropshipping();
+    setCJSetting((prevSetting) => {
+      return !prevSetting;
+    });
+  };
+
+  const handleAccessTokenChange = (name, value) => {
+    setCJAccessToken(value);
+  };
+
+  const hanldeSubmit = () => {
+    submitCJShippingAccessToken(CJAccessToken);
+  };
+
   return (
     <PageContainer pageTitle="CJ Dropshipping">
       <CardContainer title="Include CJ Dropshipping COGS in Dashboard?">
-        <div className="custom-control custom-switch">
-          <input
-            className="custom-control-input"
-            id="CJShippingSettingSwitch"
-            type="checkbox"
-            checked="checked"
-          />
-          <label className="custom-control-label" for="CJShippingSettingSwitch">
-            Toggle To Include CJ Dropshipping
-          </label>
-        </div>
+        <ToggleElement checked={CJSetting} onChange={handleChange} />
       </CardContainer>
       <CardContainer title="CJ Dropshipping API Key">
-        <div id="CJ-shipping-access-token-card"></div>
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Enter In a New Value to Replace Your Existing API Key"
-          id="CJ-shipping-selector"
+        <InputElement
+          inputName="CJ"
+          handleChange={handleAccessTokenChange}
+          value={CJAccessToken}
+          title="Enter In a New Value to Replace Your Existing API Key (Any previously entered tokens are encrypted and not displayed below)"
         />
         <br />
-        <button
-          className="btn-outline-light btn-lg"
-          id="submit-CJ-shipping-access-token"
-        >
-          <FaPaperPlane />
-          Update CJ Dropshipping Token
-        </button>
+        <ButtonSuccess
+          title="Update CJ Dropshipping Access Token"
+          onClick={hanldeSubmit}
+        />
         <br />
         <br />
         <strong>To Obtain your API Key Follow The Below Steps:</strong>

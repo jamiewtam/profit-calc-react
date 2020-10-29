@@ -1,5 +1,11 @@
 import React from "react";
-import { FaPaperPlane, FaSignOutAlt, FaWrench, FaTrash } from "react-icons/fa";
+import {
+  FaPaperPlane,
+  FaSignOutAlt,
+  FaWrench,
+  FaTrash,
+  FaSync,
+} from "react-icons/fa";
 
 export const ButtonSuccess = ({ title, onClick, style }) => (
   <button
@@ -40,5 +46,11 @@ export const ButtonAddAdAccount = ({ title, style, onClick }) => (
 export const ButtonRemoveAdAccount = ({ title, style, onClick }) => (
   <button className="btn-outline-light btn-lg" style={style} onClick={onClick}>
     <FaSignOutAlt /> {title}
+  </button>
+);
+
+export const ButtonSync = ({ title, buttonClass, style, onClick }) => (
+  <button className={`${buttonClass} btn-lg`} style={style} onClick={onClick}>
+    <FaSync /> {title}
   </button>
 );

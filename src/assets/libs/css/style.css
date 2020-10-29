@@ -5417,3 +5417,7 @@ form.dropzone {
   background-color: #b7b6b7;
   border-radius: 2px;
 }
+
+.react-bootstrap-table-pagination {
+  margin: 10px 0px;
+}

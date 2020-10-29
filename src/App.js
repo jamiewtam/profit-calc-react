@@ -5,7 +5,8 @@ import { IconContext } from "react-icons";
 
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css"; // Bootstrap table
+import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import Header from "./components/Navigation/Header";
 
 import Loading from "./components/General/Loading";
@@ -18,7 +19,7 @@ import OrderBreakdown from "./pages/Analytics/OrderBreakdown";
 import GraphBreakdown from "./pages/Analytics/GraphBreakdown";
 
 // Expense pages
-
+import ManualCOGS from "./pages/Expenses/COGS/ManualCOGS/ManualCOGS";
 import MonthlyExpenses from "./pages/Expenses/MonthlyExpenses/MonthlyExpenses";
 import AdAccountLogins from "./pages/Expenses/AdAccountLogins/AdAccountLogins";
 import AliexpressCOGS from "./pages/Expenses/COGS/Aliexpress";
@@ -51,7 +52,7 @@ const Routing = () => {
       </Route>
       {/* Expenses - COGS */}
       <Route path="/manualcogs">
-        <Dashboard />
+        <ManualCOGS />
       </Route>
       <Route path="/aliexpressCogs">
         <AliexpressCOGS />

@@ -1,4 +1,19 @@
 import React from "react";
+import BootstrapSwitchButton from "bootstrap-switch-button-react";
+
+export const ToggleElement = ({ onChange, checked }) => {
+  return (
+    <BootstrapSwitchButton
+      checked={checked}
+      onlabel="Included in Dashboard"
+      offlabel="Not Included in Dashboard"
+      size="sm"
+      onstyle="dark"
+      width={215}
+      onChange={onChange}
+    />
+  );
+};
 
 export const InputElement = ({ title, value, handleChange, inputName }) => {
   return (

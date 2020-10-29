@@ -12,12 +12,11 @@ import {
   allMonthlyExpensesHeaders,
 } from "./monthlyExpenseComponents";
 //FUNCTIONS
-import { settingsReducer } from "../../../util/factoryFunctions/general";
 import {
   createMonthlyExpense,
   deleteMonthlyExpense,
   editMonthlyExpense,
-} from "../../../api/expenses/monthlyExp/monthlyExpenses";
+} from "../../../api/expenses/index";
 import { renderExpenseTable } from "../../../api/analytics/dashboard/dataFetching";
 
 export const monthlyExpenseReducer = (state, action) => {

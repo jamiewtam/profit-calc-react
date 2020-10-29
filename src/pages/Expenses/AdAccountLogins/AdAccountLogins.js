@@ -6,14 +6,6 @@ import SubNavMenu from "../../../components/Navigation/SubNavMenu";
 import { FacebookAds, GoogleAds, BingAds } from "./AdAccountLoginComponents";
 // FUNCTIONS
 import { userContext } from "../../../util/Context/userContext";
-import {
-  selectFbAdAccounts,
-  updateAdwordsAccountID,
-  refreshAccessToken,
-  removeFacebook,
-  removeGoogle,
-  removeBing,
-} from "../../../api/expenses/adAccounts/index";
 
 const routes = [
   { to: "", title: "Facebook Ads" },
