@@ -15,6 +15,7 @@ import {
   FaUserCircle,
   FaBook,
   FaCogs,
+  FaBalanceScale,
 } from "react-icons/fa";
 
 const NavItem = ({ title, CustomIcon, link }) => {
@@ -65,7 +66,12 @@ const SideNavigation = () => {
                 link="/reports/lineCart"
                 CustomIcon={FaChartLine}
               />
-
+              <NavDivider title="Expenses" />
+              <NavItem
+                title="Revenue By Date"
+                link="/revenue/revenueByDate"
+                CustomIcon={FaBalanceScale}
+              />
               <NavDivider title="Expenses" />
 
               <Accordion>
@@ -102,7 +108,6 @@ const SideNavigation = () => {
                   </ul>
                 </Accordion.Collapse>
               </Accordion>
-
               <NavItem
                 title="Monthly Expenses"
                 link="/monthlyExpenses"

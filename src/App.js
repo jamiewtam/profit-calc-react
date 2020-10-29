@@ -18,6 +18,8 @@ import Dashboard from "./pages/Analytics/Dashboard";
 import OrderBreakdown from "./pages/Analytics/OrderBreakdown";
 import GraphBreakdown from "./pages/Analytics/GraphBreakdown";
 
+//REVENUE
+import RevenueByDate from "./pages/Revenue/RevenueByDate";
 // Expense pages
 import ManualCOGS from "./pages/Expenses/COGS/ManualCOGS/ManualCOGS";
 import MonthlyExpenses from "./pages/Expenses/MonthlyExpenses/MonthlyExpenses";
@@ -50,6 +52,10 @@ const Routing = () => {
       </Route>
       <Route path="/reports/lineChart">
         <GraphBreakdown />
+      </Route>
+      {/* Revenue */}
+      <Route path="/revenue/revenueByDate">
+        <RevenueByDate />
       </Route>
       {/* Expenses - COGS */}
       <Route path="/manualcogs">
